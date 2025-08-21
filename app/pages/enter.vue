@@ -5,6 +5,7 @@ const form = reactive({ passcode: '' })
 const { public: pub } = useRuntimeConfig()
 const toast = useToast()
 const cookie = useCookie('nmc_access', { sameSite: 'lax', path: '/' })
+const inputRef = ref<any>(null)
 
 function normalizeNext(n?: string) {
   if (!n) return '/'
@@ -24,9 +25,24 @@ function submit() {
   } else {
     toast.add({
       title: 'Invalid passcode',
-      description: 'Please try again or contact the presenter.',
+      description: 'Please try again.',
       color: 'error',
-      duration: 3000,
+      duration: 0,
+      orientation: 'vertical',
+      actions: [
+        {
+          icon: 'i-lucide-eraser',
+          label: 'Clear',
+          color: 'neutral',
+          variant: 'outline',
+          onClick: (e?: Event) => {
+            e?.stopPropagation?.()
+            form.passcode = ''
+            // focus back to input
+            queueMicrotask(() => inputRef.value?.focus?.())
+          },
+        },
+      ],
     })
   }
 }
@@ -40,7 +56,13 @@ function submit() {
       </template>
       <UForm :state="form" @submit.prevent="submit">
         <UFormField label="Passcode" name="passcode">
-          <UInput v-model="form.passcode" type="password" autocomplete="off" size="lg" />
+          <UInput
+            ref="inputRef"
+            v-model="form.passcode"
+            type="password"
+            autocomplete="off"
+            size="lg"
+          />
         </UFormField>
         <div class="mt-4 flex justify-end">
           <UButton type="submit" color="primary">Continue</UButton>
