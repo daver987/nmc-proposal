@@ -3,15 +3,24 @@ const route = useRoute()
 const router = useRouter()
 const passInput = ref('')
 const { public: pub } = useRuntimeConfig()
-const cookie = useCookie('nmc_access', { sameSite: 'lax' })
+const cookie = useCookie('nmc_access', { sameSite: 'lax', path: '/' })
+
+function normalizeNext(n?: string) {
+  if (!n) return '/'
+  let out = n
+  try {
+    out = decodeURIComponent(n)
+  } catch (e) {}
+  if (!out.startsWith('/')) return '/'
+  return out
+}
 
 function submit() {
   if (passInput.value && passInput.value === pub.passcode) {
     cookie.value = 'ok'
-    const next = (route.query.next as string) || '/'
+    const next = normalizeNext(route.query.next as string)
     router.push(next)
   } else {
-    // lightweight toast via alert for now; can swap to Nuxt UI toast when needed
     alert('Incorrect passcode')
   }
 }
