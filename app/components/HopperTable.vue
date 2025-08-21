@@ -86,12 +86,19 @@ function exportCSV() {
 }
 
 // Seed from bundled template once if empty
-import csvRaw from '~/docs/reference/NMC_Opportunity_Scoring_Template.csv?raw'
-if (rows.value.length === 0) {
-  const res = Papa.parse<Row>(csvRaw, { header: true, skipEmptyLines: true })
-  rows.value = res.data
-  recomputeAll()
-}
+onMounted(async () => {
+  if (rows.value.length > 0) return
+  try {
+    const res = await fetch('/reference/NMC_Opportunity_Scoring_Template.csv')
+    if (!res.ok) return
+    const text = await res.text()
+    const parsed = Papa.parse<Row>(text, { header: true, skipEmptyLines: true })
+    rows.value = parsed.data
+    recomputeAll()
+  } catch {
+    // ignore seed errors
+  }
+})
 </script>
 
 <template>
