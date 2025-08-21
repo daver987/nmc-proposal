@@ -8,7 +8,7 @@
 
 @theme {
   /* Wider container for presentation pages */
-  --container-8xl: 90rem;
+  --container-8xl: 80rem;
   --color-amber-50: #f7f2ee;
   --color-amber-100: #eee5dd;
   --color-amber-200: #deccba;

@@ -1,357 +1,235 @@
 <script setup lang="ts">
-type Metrics = { labor?: number; error?: number; cycle?: number; net?: number }
-const metrics = useState<Metrics>('metrics', () => ({}))
-const hasMetrics = computed(() =>
-  Boolean(
-    (metrics.value.labor || 0) +
-      (metrics.value.error || 0) +
-      (metrics.value.cycle || 0) +
-      (metrics.value.net || 0)
-  )
-)
-
-const heroSrc = '/index-image.png' // place image in /public/index-image.png to display
-const showHero = ref(true)
+// scripts
 </script>
 
 <template>
-  <div class="space-y-12">
-    <div class="text-center space-y-6 py-8">
-      <div class="space-y-4">
-        <h1 class="text-4xl md:text-5xl font-bold">Operational AI Audit & Activation</h1>
-        <p class="text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto">
-          Proposal for New Mountain Capital
-        </p>
+  <div class="space-y-8">
+    <div class="grid items-center gap-6 md:grid-cols-2">
+      <div class="space-y-3">
+        <h1 class="text-3xl md:text-4xl font-semibold leading-tight">
+          Operational AI Audit & Activation
+        </h1>
+        <p class="text-base text-toned">Proposal for New Mountain Capital</p>
       </div>
     </div>
 
-    <section class="p-8">
-      <div class="max-w-4xl mx-auto">
-        <h2 class="text-2xl font-bold mb-6 text-center">Objective</h2>
-        <div class="text-center mb-6">
-          <p class="text-lg text-neutral-700 dark:text-neutral-300">
-            In <strong>45–60 days</strong>, deliver:
-          </p>
-        </div>
-        <div class="grid gap-4 md:grid-cols-3 mb-6">
-          <div class="flex items-start gap-3 p-4 bg-white/60 dark:bg-neutral-800/60 rounded-lg">
-            <div
-              class="flex-shrink-0 w-8 h-8 bg-amber-600 text-white rounded-full flex items-center justify-center text-sm font-bold"
-            >
-              1
-            </div>
-            <div class="text-sm">
-              <strong>Prioritized map</strong> of high‑impact AI opportunities across
-              Ops/Finance/HR/IR/Legal
-            </div>
-          </div>
-          <div class="flex items-start gap-3 p-4 bg-white/60 dark:bg-neutral-800/60 rounded-lg">
-            <div
-              class="flex-shrink-0 w-8 h-8 bg-amber-600 text-white rounded-full flex items-center justify-center text-sm font-bold"
-            >
-              2
-            </div>
-            <div class="text-sm">
-              <strong>Two production‑grade pilots</strong> with measured ROI
-            </div>
-          </div>
-          <div class="flex items-start gap-3 p-4 bg-white/60 dark:bg-neutral-800/60 rounded-lg">
-            <div
-              class="flex-shrink-0 w-8 h-8 bg-amber-600 text-white rounded-full flex items-center justify-center text-sm font-bold"
-            >
-              3
-            </div>
-            <div class="text-sm"><strong>Adoption plan</strong> for non‑technical users</div>
-          </div>
-        </div>
-        <div class="text-center text-sm text-neutral-600 dark:text-neutral-400">
-          Uses ChatGPT Enterprise connectors + Deep Research; no rip‑and‑replace.
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2 class="text-3xl font-bold text-center mb-8">Three-Phase Approach</h2>
-      <div class="grid gap-6 lg:grid-cols-3">
-        <div
-          class="bg-white dark:bg-neutral-900 border-2 border-neutral-200 dark:border-neutral-700 rounded-xl p-6 space-y-4"
-        >
-          <div class="text-center">
-            <div
-              class="inline-flex items-center justify-center w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-xl font-bold mb-3"
-            >
-              1
-            </div>
-            <h3 class="text-xl font-semibold">Discovery & Baseline</h3>
-            <p class="text-sm text-neutral-600 dark:text-neutral-400">Weeks 1–2</p>
-          </div>
-          <ul class="space-y-2 text-sm">
-            <li class="flex items-start gap-2">
-              <span>•</span>
-              <span>Stakeholder map; capture candidate workflows with metrics sheets</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span>•</span>
-              <span>Stand up connectors to reduce knowledge friction</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span>•</span>
-              <span>Publish an Opportunity Hopper (scoring template)</span>
-            </li>
-          </ul>
-        </div>
-
-        <div
-          class="bg-white dark:bg-neutral-900 border-2 border-neutral-200 dark:border-neutral-700 rounded-xl p-6 space-y-4"
-        >
-          <div class="text-center">
-            <div
-              class="inline-flex items-center justify-center w-12 h-12 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-full text-xl font-bold mb-3"
-            >
-              2
-            </div>
-            <h3 class="text-xl font-semibold">Prioritize & Pilot</h3>
-            <p class="text-sm text-neutral-600 dark:text-neutral-400">Weeks 3–6</p>
-          </div>
-          <ul class="space-y-2 text-sm">
-            <li class="flex items-start gap-2">
-              <span>•</span>
-              <span>Pick Top‑5 by RICE; launch 2 quick‑win pilots</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span>•</span>
-              <span>Acceptance criteria per pilot (numeric pass/fail gates)</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span>•</span>
-              <span>Enablement: micro‑videos + job aids</span>
-            </li>
-          </ul>
-        </div>
-
-        <div
-          class="bg-white dark:bg-neutral-900 border-2 border-neutral-200 dark:border-neutral-700 rounded-xl p-6 space-y-4"
-        >
-          <div class="text-center">
-            <div
-              class="inline-flex items-center justify-center w-12 h-12 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full text-xl font-bold mb-3"
-            >
-              3
-            </div>
-            <h3 class="text-xl font-semibold">Scale & Govern</h3>
-            <p class="text-sm text-neutral-600 dark:text-neutral-400">Weeks 7–9</p>
-          </div>
-          <ul class="space-y-2 text-sm">
-            <li class="flex items-start gap-2">
-              <span>•</span>
-              <span>Graduate pilots that hit gates; expand to next teams</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span>•</span>
-              <span>Governance: permissions‑inherit, citations‑on, audit logs</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span>•</span>
-              <span>Quarterly ROI roll‑up + roadmap</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Evaluation Method -->
-    <section class="py-12">
-      <div class="max-w-5xl mx-auto">
-        <h2 class="text-2xl font-bold text-center mb-8">Evaluation Method</h2>
-        <div class="grid gap-6 md:grid-cols-2">
-          <div class="space-y-4">
-            <div class="flex items-start gap-4 p-4 bg-white dark:bg-neutral-800 rounded-lg">
-              <div
-                class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold"
-              >
-                1
-              </div>
-              <div class="text-sm">
-                <div class="font-semibold mb-1">Discovery</div>
-                Inventory & shadow sessions; collect artifacts and SOPs
-              </div>
-            </div>
-            <div class="flex items-start gap-4 p-4 bg-white dark:bg-neutral-800 rounded-lg">
-              <div
-                class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold"
-              >
-                2
-              </div>
-              <div class="text-sm">
-                <div class="font-semibold mb-1">Baseline</div>
-                Measure baseline minutes, defects, and cycle time
-              </div>
-            </div>
-            <div class="flex items-start gap-4 p-4 bg-white dark:bg-neutral-800 rounded-lg">
-              <div
-                class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold"
-              >
-                3
-              </div>
-              <div class="text-sm">
-                <div class="font-semibold mb-1">Economics</div>
-                Quantify unit economics: volume, minutes, loaded rate, queue/defect
-              </div>
-            </div>
-          </div>
-          <div class="space-y-4">
-            <div class="flex items-start gap-4 p-4 bg-white dark:bg-neutral-800 rounded-lg">
-              <div
-                class="flex-shrink-0 w-10 h-10 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold"
-              >
-                4
-              </div>
-              <div class="text-sm">
-                <div class="font-semibold mb-1">Score</div>
-                Impact ($/mo), Effort, Risk, Confidence; compute RICE
-              </div>
-            </div>
-            <div class="flex items-start gap-4 p-4 bg-white dark:bg-neutral-800 rounded-lg">
-              <div
-                class="flex-shrink-0 w-10 h-10 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold"
-              >
-                5
-              </div>
-              <div class="text-sm">
-                <div class="font-semibold mb-1">Pilot</div>
-                Launch with numeric acceptance criteria
-              </div>
-            </div>
-            <div class="flex items-start gap-4 p-4 bg-white dark:bg-neutral-800 rounded-lg">
-              <div
-                class="flex-shrink-0 w-10 h-10 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold"
-              >
-                6
-              </div>
-              <div class="text-sm">
-                <div class="font-semibold mb-1">Prove</div>
-                A/B or pre/post testing; instrument results
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Two Column Section: Quick Wins & Acceptance Gates -->
-    <section class="grid gap-8 lg:grid-cols-2">
-      <div class="space-y-4">
-        <h2 class="text-2xl font-bold">Candidate Quick Wins</h2>
-        <p class="text-neutral-600 dark:text-neutral-400 text-sm">
-          Examples of high-impact opportunities
+    <UCard>
+      <template #header><span class="text-lg font-medium">Objective</span></template>
+      <div class="text-sm space-y-2">
+        <p>In 45–60 days, deliver:</p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>
+            Defensible map of high‑impact AI opportunities across Ops / Finance / HR / IR / Legal.
+          </li>
+          <li>Two production‑grade quick wins with measured ROI.</li>
+          <li>Adoption program for non‑technical users.</li>
+        </ul>
+        <p>
+          Leverage ChatGPT Enterprise connectors + Deep Research and, where needed, MCP tools. No
+          rip‑and‑replace on Day 1.
         </p>
-        <div class="space-y-3">
-          <div
-            class="flex items-start gap-3 p-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg"
-          >
-            <div class="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-            <span class="text-sm">Investor/LP reporting assist with citations in Office</span>
+      </div>
+    </UCard>
+
+    <UCard>
+      <template #header
+        ><span class="text-lg font-medium">How I Determine Where AI Should Go</span></template
+      >
+      <ol class="list-decimal pl-5 space-y-1 text-sm">
+        <li>
+          <span class="font-medium">Inventory & Shadow —</span> 8–12 stakeholder interviews + 4–6
+          process shadow sessions per function. Artifacts: SOPs, checklists, report templates,
+          email/Teams snippets.
+        </li>
+        <li>
+          <span class="font-medium">Measure the baseline —</span> time‑on‑task sampling pull simple
+          operational logs where available (SharePoint/Drive activity, email volume, report revision
+          counts). Create a metrics sheet for each candidate workflow.
+        </li>
+        <li>
+          <span class="font-medium">Quantify the unit economics —</span> for each workflow:
+          volume/week, avg minutes/task, loaded labor rate, defect/rework rate, cycle time, queue
+          time, blocker count.
+        </li>
+        <li>
+          <span class="font-medium">Score opportunities —</span> Impact ($/mo) = hours saved ×
+          loaded rate + error cost avoidance + cycle‑time value. Effort = data readiness +
+          integration + change. Risk = compliance + reputational + model failure impact. Confidence
+          = quality of baseline. Compute RICE = Reach×Impact×Confidence / Effort.
+        </li>
+        <li>
+          <span class="font-medium">Pilot with acceptance criteria —</span> one‑pager per pilot:
+          well‑formed input, expected output, guardrails, and numeric pass/fail gates.
+        </li>
+        <li>
+          <span class="font-medium">Prove with numbers —</span> A/B or pre/post with matched samples
+          instrumentation baked into the workflow (minutes saved, error rate, rework).
+        </li>
+      </ol>
+    </UCard>
+
+    <UCard>
+      <template #header><span class="text-lg font-medium">Phase Plan</span></template>
+      <div class="grid gap-4 md:grid-cols-3">
+        <div>
+          <p class="text-sm font-medium mb-1">Phase 1 — Discovery & Baseline (Weeks 1–2)</p>
+          <ul class="list-disc pl-5 space-y-1 text-sm">
+            <li>Stakeholder map: Ops, Finance/Accounting, IR/LP, Legal/Compliance, HR, IT.</li>
+            <li>Capture 20–30 candidate workflows metrics sheet per workflow.</li>
+            <li>
+              Stand up ChatGPT Enterprise connectors (SharePoint/OneDrive/Drive/Outlook/Teams) to
+              remove knowledge friction.
+            </li>
+            <li>Publish a living Opportunity Hopper (scoring template attached).</li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-sm font-medium mb-1">Phase 2 — Prioritize & Pilot (Weeks 3–6)</p>
+          <ul class="list-disc pl-5 space-y-1 text-sm">
+            <li>Pick Top‑5 by RICE launch 2 quick‑win pilots.</li>
+            <li>Acceptance criteria per pilot (see below).</li>
+            <li>Enablement for end‑users: 6× 60‑sec micro‑videos + one‑page job aids.</li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-sm font-medium mb-1">Phase 3 — Scale & Govern (Weeks 7–9)</p>
+          <ul class="list-disc pl-5 space-y-1 text-sm">
+            <li>Graduate pilots that hit gates expand to next 2–3 teams.</li>
+            <li>Governance: permissions‑inherit, citations‑on, audit logging, usage analytics.</li>
+            <li>Quarterly ROI roll‑up + next‑tranche roadmap.</li>
+          </ul>
+        </div>
+      </div>
+    </UCard>
+
+    <UCard>
+      <template #header
+        ><span class="text-lg font-medium">Candidate Quick Wins (examples)</span></template
+      >
+      <ul class="list-disc pl-5 space-y-1 text-sm">
+        <li>
+          Investor/LP reporting assist — assemble inputs, draft commentary with citations inside
+          Word/Excel via ChatGPT for Teams.
+        </li>
+        <li>
+          Due diligence packet triage — classify, extract key fields, generate a closing checklist
+          and gap list.
+        </li>
+        <li>
+          Policy/FAQ assistant — internal Teams bot for common Ops/HR/IT questions answers carry
+          citations unresolved → human.
+        </li>
+        <li>
+          Contract review aide — clause extraction & variance highlights for NDAs/MSAs attorney
+          review remains mandatory.
+        </li>
+      </ul>
+    </UCard>
+
+    <UCard>
+      <template #header
+        ><span class="text-lg font-medium">KPIs & Acceptance Criteria</span></template
+      >
+      <div class="text-sm">
+        <p>
+          We don’t guess targets before we measure. Definitions and gates below baselines come from
+          Phase‑1 sampling.
+        </p>
+        <div class="mt-4 grid gap-8 md:grid-cols-2">
+          <div class="space-y-4">
+            <div>
+              <p class="font-medium">Cross‑workflow</p>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Minutes per task (avg, p50, p90).</li>
+                <li>Cycle time (start→finish) & queue time (waiting).</li>
+                <li>Defect rate (% needing rework) first‑pass yield.</li>
+                <li>Throughput (tasks/week/person).</li>
+                <li>Adoption (weekly active users and tasks/user).</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-medium">Retrieval/Knowledge</p>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>
+                  Task success rate: user finds the correct doc/answer with citation within SLA.
+                </li>
+                <li>Time‑to‑answer (seconds).</li>
+                <li>Escalation rate to human.</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-medium">LP Reporting</p>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Prep minutes/report revision cycles.</li>
+                <li>Comment accuracy (PM review pass rate).</li>
+                <li>Deadline hit rate.</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-medium">Due Diligence</p>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Docs triaged/hour checklist completeness.</li>
+                <li>Missed items found in QC.</li>
+              </ul>
+            </div>
           </div>
-          <div
-            class="flex items-start gap-3 p-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg"
-          >
-            <div class="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-            <span class="text-sm">Due‑diligence packet triage and checklist generation</span>
-          </div>
-          <div
-            class="flex items-start gap-3 p-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg"
-          >
-            <div class="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-            <span class="text-sm">Policy/FAQ assistant for Ops/HR/IT with escalation</span>
-          </div>
-          <div
-            class="flex items-start gap-3 p-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg"
-          >
-            <div class="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-            <span class="text-sm"
-              >Contract review aide (clause extraction & variance highlights)</span
-            >
+          <div class="space-y-4">
+            <div>
+              <p class="font-medium">Acceptance gates for a quick win</p>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>
+                  ≥ X% reduction in minutes per task (set after baseline) with 95% confidence
+                  (paired t‑test over ≥30 samples).
+                </li>
+                <li>Defect rate not worse than baseline ideally improved by Y%.</li>
+                <li>
+                  Adoption: ≥ N weekly active users in target cohort within 14 days of launch.
+                </li>
+                <li>Compliance: zero permission violations all AI answers carry citations.</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
+    </UCard>
 
-      <div class="space-y-4">
-        <h2 class="text-2xl font-bold">Acceptance Gates</h2>
-        <p class="text-neutral-600 dark:text-neutral-400 text-sm">Per quick win pilot</p>
-        <div class="space-y-3">
-          <div
-            class="flex items-start gap-3 p-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg"
-          >
-            <div class="flex-shrink-0 w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-            <span class="text-sm">≥ X% reduction in minutes/task with 95% confidence (n≥30)</span>
-          </div>
-          <div
-            class="flex items-start gap-3 p-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg"
-          >
-            <div class="flex-shrink-0 w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-            <span class="text-sm">Defect rate not worse than baseline (ideally improved)</span>
-          </div>
-          <div
-            class="flex items-start gap-3 p-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg"
-          >
-            <div class="flex-shrink-0 w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-            <span class="text-sm">Adoption: target weekly active users within 14 days</span>
-          </div>
-          <div
-            class="flex items-start gap-3 p-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg"
-          >
-            <div class="flex-shrink-0 w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-            <span class="text-sm"
-              >Compliance: zero permission violations; citations on answers</span
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="grid gap-8 lg:grid-cols-2">
-      <div
-        class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 space-y-4"
-      >
-        <h3 class="text-xl font-semibold">Architecture Stance</h3>
-        <ul class="space-y-2 text-sm">
-          <li class="flex items-start gap-2">
-            <span>•</span>
-            <span>ChatGPT Enterprise connectors + Deep Research; MCP where needed</span>
+    <div class="grid gap-6 md:grid-cols-3">
+      <UCard>
+        <template #header
+          ><span class="text-lg font-medium">Change Enablement Non‑Technical Users</span></template
+        >
+        <ul class="list-disc pl-5 space-y-1 text-sm">
+          <li>
+            Role‑based job aids (one page each) and six 60‑sec micro‑videos embedded in Teams.
           </li>
-          <li class="flex items-start gap-2">
-            <span>•</span>
-            <span>No custom vector DB in v1; revisit for narrow, high‑volume lanes</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span>•</span>
-            <span>Security: SSO/SCIM; permission‑inherit; audit logs; PII rules</span>
-          </li>
+          <li>Office‑hours (20 minutes weekly) and a champions network in each function.</li>
+          <li>“Pinned replies” library so trainers paste the right guidance mid‑meeting.</li>
         </ul>
-      </div>
+      </UCard>
 
-      <div
-        class="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 space-y-4"
-      >
-        <h3 class="text-xl font-semibold">What You'll See Weekly</h3>
-        <ul class="space-y-2 text-sm">
-          <li class="flex items-start gap-2">
-            <span>•</span>
-            <span>Updated Opportunity Hopper with scores and baselines</span>
+      <UCard>
+        <template #header><span class="text-lg font-medium">Architecture Stance</span></template>
+        <ul class="list-disc pl-5 space-y-1 text-sm">
+          <li>
+            ChatGPT Enterprise connectors + Deep Research for knowledge work MCP tools where needed.
           </li>
-          <li class="flex items-start gap-2">
-            <span>•</span>
-            <span>Pilot scorecards with pre/post numbers and go/no‑go</span>
+          <li>
+            No custom vector DB in v1 consider later only for narrow, high‑volume lanes that demand
+            it.
           </li>
-          <li class="flex items-start gap-2">
-            <span>•</span>
-            <span>Adoption dashboard for target cohorts</span>
-          </li>
+          <li>Security: SSO/SCIM permission‑inherit audit logs PII handling rules.</li>
         </ul>
-      </div>
-    </section>
+      </UCard>
 
-    <!-- CTA Section -->
+      <UCard>
+        <template #header><span class="text-lg font-medium">What You’ll See Weekly</span></template>
+        <ul class="list-disc pl-5 space-y-1 text-sm">
+          <li>Updated Opportunity Hopper with scores and baselines.</li>
+          <li>Pilot scorecards with pre/post numbers and a go/no‑go call.</li>
+          <li>Adoption dashboard for the target cohorts.</li>
+        </ul>
+      </UCard>
+    </div>
     <section class="text-center py-8">
       <div class="space-y-6">
         <h2 class="text-2xl font-bold">Explore the Tools</h2>
@@ -359,7 +237,7 @@ const showHero = ref(true)
           Use the interactive calculators and templates to understand the impact and approach
         </p>
         <div class="flex flex-wrap justify-center gap-4">
-          <UButton to="/roi" size="lg" color="primary">ROI Calculator</UButton>
+          <UButton to="/roi" size="lg" variant="outline">ROI Calculator</UButton>
           <UButton to="/hopper" size="lg" variant="outline">Opportunity Hopper</UButton>
           <UButton to="/kpi" size="lg" variant="outline">KPI Catalog</UButton>
         </div>
