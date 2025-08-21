@@ -20,7 +20,7 @@
 ## Coding Style & Conventions
 
 - Stack: Nuxt 4, Vue 3 `<script setup>`, TypeScript, Nuxt UI 3.
-- Tailwind: Bundled via Nuxt UI (v4) — no separate setup required.
+- Styles: Add global CSS at `app/assets/css/main.css` with `@import "tailwindcss"; @import "@nuxt/ui";` and include in `nuxt.config.ts` via `css: ['~/assets/css/main.css']`.
 - Theme: Neutral `zinc` + gold accent. Set in `app/app.config.ts`:
   `export default defineAppConfig({ ui: { primary: 'amber', gray: 'zinc' } })`.
 - Naming: Components PascalCase; pages lowercase (e.g., `roi.vue`); composables `useXxx.ts`.

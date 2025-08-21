@@ -23,6 +23,7 @@
     "vue-chart-3": "^3.1.8"
   },
   "devDependencies": {
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "tailwindcss": "^4.1.12"
   }
 }
