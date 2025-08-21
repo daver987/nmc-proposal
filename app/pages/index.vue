@@ -1,29 +1,39 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+type Metrics = { labor?: number; error?: number; cycle?: number; net?: number }
+const metrics = useState<Metrics>('metrics', () => ({}))
+const hasMetrics = computed(() =>
+  Boolean(
+    (metrics.value.labor || 0) +
+      (metrics.value.error || 0) +
+      (metrics.value.cycle || 0) +
+      (metrics.value.net || 0)
+  )
+)
+</script>
 
 <template>
   <div class="space-y-6">
     <div class="flex items-center justify-between">
       <div>
-        <h1 class="text-2xl font-semibold">Operational AI — Balanced Plan</h1>
-        <p class="text-sm text-gray-500">Numbers-first narrative, quick wins, and adoption.</p>
+        <h1 class="text-2xl font-semibold">Operational AI Audit & Activation</h1>
+        <p class="text-sm text-gray-500">Proposal for New Mountain Capital</p>
       </div>
       <div class="flex gap-2">
         <UButton to="/roi" color="primary">ROI Calculator</UButton>
         <UButton to="/hopper" variant="outline">Opportunity Hopper</UButton>
         <UButton to="/kpi" variant="ghost">KPI Catalog</UButton>
-        <UButton to="/talk" variant="ghost">Talk Track</UButton>
       </div>
     </div>
 
-    <MetricCards />
+    <MetricCards v-if="hasMetrics" />
 
     <UCard>
       <template #header> Objective </template>
       <p>
-        In 45–60 days, deliver (a) a defensible map of NMC’s high‑impact AI opportunities across
-        Ops/Finance/HR/IR/Legal, (b) two production‑grade quick wins with measured ROI, and (c) an
-        adoption program for non‑technical users. Leverage ChatGPT Enterprise connectors + Deep
-        Research. No rip‑and‑replace on Day 1.
+        In 45–60 days, deliver (1) a prioritized map of high‑impact AI opportunities across
+        Ops/Finance/HR/IR/Legal, (2) two production‑grade pilots with measured ROI, and (3) an
+        adoption plan for non‑technical users. Uses ChatGPT Enterprise connectors + Deep Research;
+        no rip‑and‑replace.
       </p>
     </UCard>
 
@@ -55,10 +65,10 @@
     </div>
 
     <UCard>
-      <template #header>Evaluation Method — Where AI Should Go</template>
+      <template #header>Evaluation Method</template>
       <ol class="list-decimal pl-5 space-y-1">
         <li>Inventory & shadow sessions; collect artifacts and SOPs.</li>
-        <li>Measure baseline minutes/defects/cycle time; build metrics sheets.</li>
+        <li>Measure baseline minutes, defects, and cycle time.</li>
         <li>Quantify unit economics: volume, minutes, loaded rate, queue/defect.</li>
         <li>Score: Impact ($/mo), Effort, Risk, Confidence; compute RICE.</li>
         <li>Pilot with numeric acceptance criteria.</li>
