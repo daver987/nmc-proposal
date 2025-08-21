@@ -5,3 +5,12 @@
   /* Slightly larger base radius for a refined look */
   --ui-radius: 0.5rem;
 }
+
+@theme {
+  /* Wider container for presentation pages */
+  --container-8xl: 90rem;
+}
+
+:root {
+  --ui-container: var(--container-8xl);
+}

@@ -116,24 +116,28 @@ onMounted(async () => {
 
     <div class="overflow-x-auto">
       <table class="w-full text-sm">
-        <thead>
+        <thead class="sticky top-0 z-10 bg-default">
           <tr class="border-b">
-            <th class="p-2 text-left">Area</th>
-            <th class="p-2 text-left">Workflow</th>
-            <th class="p-2 text-right">Vol/wk</th>
-            <th class="p-2 text-right">Min/task</th>
-            <th class="p-2 text-right">$/hr</th>
-            <th class="p-2 text-right">Δ defects/mo</th>
-            <th class="p-2 text-right">$/defect</th>
-            <th class="p-2 text-right">Cycle days</th>
-            <th class="p-2 text-right">$/day</th>
-            <th class="p-2 text-right">Impact $/mo</th>
-            <th class="p-2 text-right">Effort</th>
-            <th class="p-2 text-right">RICE</th>
+            <th class="p-2 text-left text-xs uppercase tracking-wide text-toned">Area</th>
+            <th class="p-2 text-left text-xs uppercase tracking-wide text-toned">Workflow</th>
+            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">Vol/wk</th>
+            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">Min/task</th>
+            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">$/hr</th>
+            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">Δ defects/mo</th>
+            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">$/defect</th>
+            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">Cycle days</th>
+            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">$/day</th>
+            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">Impact $/mo</th>
+            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">Effort</th>
+            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">RICE</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(r, i) in rows" :key="i" class="border-b">
+          <tr
+            v-for="(r, i) in rows"
+            :key="i"
+            class="border-b odd:bg-muted/40 hover:bg-elevated transition-colors"
+          >
             <td class="p-2">{{ r['Area'] }}</td>
             <td class="p-2">{{ r['Workflow'] }}</td>
             <td class="p-2 text-right">
