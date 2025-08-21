@@ -24,15 +24,15 @@ function submit() {
         <div class="text-lg font-semibold">Enter Access Passcode</div>
       </template>
       <UForm @submit.prevent="submit">
-        <UFormGroup label="Passcode" name="passcode">
+        <UFormField label="Passcode" name="passcode">
           <UInput v-model="passInput" type="password" autocomplete="off" size="lg" />
-        </UFormGroup>
+        </UFormField>
         <div class="mt-4 flex justify-end">
           <UButton type="submit" color="primary">Continue</UButton>
         </div>
       </UForm>
       <template #footer>
-        <span class="text-xs text-gray-500">Protected content requires a one-time passcode.</span>
+        <span class="text-xs text-muted">Protected content requires a one-time passcode.</span>
       </template>
     </UCard>
   </div>

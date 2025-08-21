@@ -90,33 +90,33 @@ const chartOptions = {
     <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
       <div class="space-y-3 md:col-span-2">
         <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          <UFormGroup label="Minutes saved per task">
+          <UFormField label="Minutes saved per task">
             <UInput v-model.number="inputs.minutesSavedPerTask" type="number" />
-          </UFormGroup>
-          <UFormGroup label="Tasks per month">
+          </UFormField>
+          <UFormField label="Tasks per month">
             <UInput v-model.number="inputs.tasksPerMonth" type="number" />
-          </UFormGroup>
-          <UFormGroup label="Loaded $/hour">
+          </UFormField>
+          <UFormField label="Loaded $/hour">
             <UInput v-model.number="inputs.loadedRatePerHour" type="number" />
-          </UFormGroup>
-          <UFormGroup label="Defects (baseline)">
+          </UFormField>
+          <UFormField label="Defects (baseline)">
             <UInput v-model.number="inputs.baselineDefects" type="number" />
-          </UFormGroup>
-          <UFormGroup label="Defects (post)">
+          </UFormField>
+          <UFormField label="Defects (post)">
             <UInput v-model.number="inputs.postDefects" type="number" />
-          </UFormGroup>
-          <UFormGroup label="$ per defect">
+          </UFormField>
+          <UFormField label="$ per defect">
             <UInput v-model.number="inputs.dollarsPerDefect" type="number" />
-          </UFormGroup>
-          <UFormGroup label="Cycle time saved (days)">
+          </UFormField>
+          <UFormField label="Cycle time saved (days)">
             <UInput v-model.number="inputs.cycleDaysSaved" type="number" />
-          </UFormGroup>
-          <UFormGroup label="$ value per day">
+          </UFormField>
+          <UFormField label="$ value per day">
             <UInput v-model.number="inputs.dollarsPerDay" type="number" />
-          </UFormGroup>
-          <UFormGroup label="Monthly tool + change + build cost ($)">
+          </UFormField>
+          <UFormField label="Monthly tool + change + build cost ($)">
             <UInput v-model.number="inputs.monthlyCost" type="number" />
-          </UFormGroup>
+          </UFormField>
         </div>
         <MetricCards />
       </div>

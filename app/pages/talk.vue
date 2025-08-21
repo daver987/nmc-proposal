@@ -18,7 +18,7 @@ const lines = [
       </div>
     </UCard>
     <UAlert
-      color="yellow"
+      color="warning"
       title="Note"
       description="Email/snippets in docs are for context only and are not surfaced here."
     />

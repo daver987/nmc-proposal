@@ -1,2 +1,7 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
+
+:root {
+  /* Slightly larger base radius for a refined look */
+  --ui-radius: 0.5rem;
+}

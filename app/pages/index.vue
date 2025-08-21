@@ -16,7 +16,7 @@ const hasMetrics = computed(() =>
     <div class="flex items-center justify-between">
       <div>
         <h1 class="text-2xl font-semibold">Operational AI Audit & Activation</h1>
-        <p class="text-sm text-gray-500">Proposal for New Mountain Capital</p>
+        <p class="text-sm text-muted">Proposal for New Mountain Capital</p>
       </div>
       <div class="flex gap-2">
         <UButton to="/roi" color="primary">ROI Calculator</UButton>
