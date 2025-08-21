@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { BarChart } from 'vue-chart-3'
-import { Chart, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js'
+import { Chart, registerables } from 'chart.js'
 import { useStorage } from '@vueuse/core'
 
-Chart.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend)
+// Register all controllers/elements/scales for Chart.js 4
+Chart.register(...registerables)
 
 type RoiInputs = {
   minutesSavedPerTask: number

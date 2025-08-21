@@ -115,7 +115,7 @@ const showHero = ref(true)
 
     <USeparator />
 
-    <UCard>
+    <UCard variant="subtle">
       <template #header
         ><span class="text-lg font-medium">Acceptance Gates (per quick win)</span></template
       >

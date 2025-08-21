@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Papa from 'papaparse'
 import { useStorage } from '@vueuse/core'
+import type { TableColumn } from '@nuxt/ui'
 
 type Row = {
   Area: string
@@ -27,6 +28,71 @@ type Row = {
 }
 
 const rows = useStorage<Row[]>('hopper-rows', [])
+
+const columns: TableColumn<Row>[] = [
+  { accessorKey: 'Area', header: 'Area' },
+  { accessorKey: 'Workflow', header: 'Workflow' },
+  {
+    id: 'volWeek',
+    accessorKey: 'Volume/week',
+    header: 'Vol/wk',
+    meta: { class: { th: 'text-right', td: 'text-right' } },
+  },
+  {
+    id: 'avgMin',
+    accessorKey: 'Avg minutes/task',
+    header: 'Min/task',
+    meta: { class: { th: 'text-right', td: 'text-right' } },
+  },
+  {
+    id: 'rate',
+    accessorKey: 'Loaded $/hr',
+    header: '$/hr',
+    meta: { class: { th: 'text-right', td: 'text-right' } },
+  },
+  {
+    id: 'deltaDef',
+    accessorKey: 'Delta defects/month',
+    header: 'Δ defects/mo',
+    meta: { class: { th: 'text-right', td: 'text-right' } },
+  },
+  {
+    id: 'perDef',
+    accessorKey: '$ per defect',
+    header: '$/defect',
+    meta: { class: { th: 'text-right', td: 'text-right' } },
+  },
+  {
+    id: 'cycleDays',
+    accessorKey: 'Cycle days saved',
+    header: 'Cycle days',
+    meta: { class: { th: 'text-right', td: 'text-right' } },
+  },
+  {
+    id: 'perDay',
+    accessorKey: '$ per day',
+    header: '$/day',
+    meta: { class: { th: 'text-right', td: 'text-right' } },
+  },
+  {
+    id: 'impact',
+    accessorKey: 'Impact $/mo',
+    header: 'Impact $/mo',
+    meta: { class: { th: 'text-right', td: 'text-right tabular-nums' } },
+  },
+  {
+    id: 'effort',
+    accessorKey: 'Effort score',
+    header: 'Effort',
+    meta: { class: { th: 'text-right', td: 'text-right tabular-nums' } },
+  },
+  {
+    id: 'rice',
+    accessorKey: 'RICE score',
+    header: 'RICE',
+    meta: { class: { th: 'text-right', td: 'text-right tabular-nums' } },
+  },
+]
 
 function parseNumber(v: any) {
   const n = typeof v === 'string' ? parseFloat(v.replace(/,/g, '')) : Number(v)
@@ -114,78 +180,76 @@ onMounted(async () => {
       <UButton variant="outline" @click="recomputeAll">Recompute</UButton>
     </div>
 
-    <div class="overflow-x-auto">
-      <table class="w-full text-sm">
-        <thead class="sticky top-0 z-10 bg-default">
-          <tr class="border-b">
-            <th class="p-2 text-left text-xs uppercase tracking-wide text-toned">Area</th>
-            <th class="p-2 text-left text-xs uppercase tracking-wide text-toned">Workflow</th>
-            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">Vol/wk</th>
-            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">Min/task</th>
-            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">$/hr</th>
-            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">Δ defects/mo</th>
-            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">$/defect</th>
-            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">Cycle days</th>
-            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">$/day</th>
-            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">Impact $/mo</th>
-            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">Effort</th>
-            <th class="p-2 text-right text-xs uppercase tracking-wide text-toned">RICE</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="(r, i) in rows"
-            :key="i"
-            class="border-b odd:bg-muted/40 hover:bg-elevated transition-colors"
-          >
-            <td class="p-2">{{ r['Area'] }}</td>
-            <td class="p-2">{{ r['Workflow'] }}</td>
-            <td class="p-2 text-right">
-              <UInput size="xs" v-model="r['Volume/week']" type="number" @change="compute(r)" />
-            </td>
-            <td class="p-2 text-right">
-              <UInput
-                size="xs"
-                v-model="r['Avg minutes/task']"
-                type="number"
-                @change="compute(r)"
-              />
-            </td>
-            <td class="p-2 text-right">
-              <UInput size="xs" v-model="r['Loaded $/hr']" type="number" @change="compute(r)" />
-            </td>
-            <td class="p-2 text-right">
-              <UInput
-                size="xs"
-                v-model="r['Delta defects/month']"
-                type="number"
-                @change="compute(r)"
-              />
-            </td>
-            <td class="p-2 text-right">
-              <UInput size="xs" v-model="r['$ per defect']" type="number" @change="compute(r)" />
-            </td>
-            <td class="p-2 text-right">
-              <UInput
-                size="xs"
-                v-model="r['Cycle days saved']"
-                type="number"
-                @change="compute(r)"
-              />
-            </td>
-            <td class="p-2 text-right">
-              <UInput size="xs" v-model="r['$ per day']" type="number" @change="compute(r)" />
-            </td>
-            <td class="p-2 text-right tabular-nums">
-              {{ r['Impact $/mo']?.toLocaleString?.() ?? '-' }}
-            </td>
-            <td class="p-2 text-right tabular-nums">{{ r['Effort score'] ?? '-' }}</td>
-            <td class="p-2 text-right tabular-nums">
-              <UBadge color="primary" variant="soft">{{ r['RICE score'] ?? '-' }}</UBadge>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <UTable :data="rows" :columns="columns" sticky>
+      <template #volWeek-cell="{ row }">
+        <UInput
+          size="xs"
+          v-model="row.original['Volume/week']"
+          type="number"
+          @change="compute(row.original)"
+        />
+      </template>
+      <template #avgMin-cell="{ row }">
+        <UInput
+          size="xs"
+          v-model="row.original['Avg minutes/task']"
+          type="number"
+          @change="compute(row.original)"
+        />
+      </template>
+      <template #rate-cell="{ row }">
+        <UInput
+          size="xs"
+          v-model="row.original['Loaded $/hr']"
+          type="number"
+          @change="compute(row.original)"
+        />
+      </template>
+      <template #deltaDef-cell="{ row }">
+        <UInput
+          size="xs"
+          v-model="row.original['Delta defects/month']"
+          type="number"
+          @change="compute(row.original)"
+        />
+      </template>
+      <template #perDef-cell="{ row }">
+        <UInput
+          size="xs"
+          v-model="row.original['$ per defect']"
+          type="number"
+          @change="compute(row.original)"
+        />
+      </template>
+      <template #cycleDays-cell="{ row }">
+        <UInput
+          size="xs"
+          v-model="row.original['Cycle days saved']"
+          type="number"
+          @change="compute(row.original)"
+        />
+      </template>
+      <template #perDay-cell="{ row }">
+        <UInput
+          size="xs"
+          v-model="row.original['$ per day']"
+          type="number"
+          @change="compute(row.original)"
+        />
+      </template>
+      <template #impact-cell="{ row }">
+        <div class="text-right tabular-nums">
+          {{ row.original['Impact $/mo']?.toLocaleString?.() ?? '-' }}
+        </div>
+      </template>
+      <template #effort-cell="{ row }">
+        <div class="text-right tabular-nums">{{ row.original['Effort score'] ?? '-' }}</div>
+      </template>
+      <template #rice-cell="{ row }">
+        <div class="text-right tabular-nums">
+          <UBadge color="primary" variant="soft">{{ row.original['RICE score'] ?? '-' }}</UBadge>
+        </div>
+      </template>
+    </UTable>
   </div>
 </template>
