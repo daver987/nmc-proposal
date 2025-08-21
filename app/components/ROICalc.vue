@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Bar } from 'vue-chart-3'
+import { BarChart } from 'vue-chart-3'
 import { Chart, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js'
 import { useStorage } from '@vueuse/core'
 
@@ -122,7 +122,7 @@ const chartOptions = {
       </div>
       <div class="md:col-span-1">
         <div class="h-64">
-          <Bar :chart-data="chartData" :options="chartOptions" />
+          <BarChart :chart-data="chartData" :options="chartOptions" />
         </div>
       </div>
     </div>
