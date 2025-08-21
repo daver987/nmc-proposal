@@ -36,61 +36,61 @@ const columns: TableColumn<Row>[] = [
     id: 'volWeek',
     accessorKey: 'Volume/week',
     header: 'Vol/wk',
-    meta: { class: { th: 'text-right', td: 'text-right' } },
+    meta: { class: { th: 'text-right whitespace-nowrap', td: 'text-right' } },
   },
   {
     id: 'avgMin',
     accessorKey: 'Avg minutes/task',
     header: 'Min/task',
-    meta: { class: { th: 'text-right', td: 'text-right' } },
+    meta: { class: { th: 'text-right whitespace-nowrap', td: 'text-right' } },
   },
   {
     id: 'rate',
     accessorKey: 'Loaded $/hr',
     header: '$/hr',
-    meta: { class: { th: 'text-right', td: 'text-right' } },
+    meta: { class: { th: 'text-right whitespace-nowrap', td: 'text-right' } },
   },
   {
     id: 'deltaDef',
     accessorKey: 'Delta defects/month',
     header: 'Δ defects/mo',
-    meta: { class: { th: 'text-right', td: 'text-right' } },
+    meta: { class: { th: 'text-right whitespace-nowrap', td: 'text-right' } },
   },
   {
     id: 'perDef',
     accessorKey: '$ per defect',
     header: '$/defect',
-    meta: { class: { th: 'text-right', td: 'text-right' } },
+    meta: { class: { th: 'text-right whitespace-nowrap', td: 'text-right' } },
   },
   {
     id: 'cycleDays',
     accessorKey: 'Cycle days saved',
     header: 'Cycle days',
-    meta: { class: { th: 'text-right', td: 'text-right' } },
+    meta: { class: { th: 'text-right whitespace-nowrap', td: 'text-right' } },
   },
   {
     id: 'perDay',
     accessorKey: '$ per day',
     header: '$/day',
-    meta: { class: { th: 'text-right', td: 'text-right' } },
+    meta: { class: { th: 'text-right whitespace-nowrap', td: 'text-right' } },
   },
   {
     id: 'impact',
     accessorKey: 'Impact $/mo',
     header: 'Impact $/mo',
-    meta: { class: { th: 'text-right', td: 'text-right tabular-nums' } },
+    meta: { class: { th: 'text-right whitespace-nowrap', td: 'text-right tabular-nums' } },
   },
   {
     id: 'effort',
     accessorKey: 'Effort score',
     header: 'Effort',
-    meta: { class: { th: 'text-right', td: 'text-right tabular-nums' } },
+    meta: { class: { th: 'text-right whitespace-nowrap', td: 'text-right tabular-nums' } },
   },
   {
     id: 'rice',
     accessorKey: 'RICE score',
     header: 'RICE',
-    meta: { class: { th: 'text-right', td: 'text-right tabular-nums' } },
+    meta: { class: { th: 'text-right whitespace-nowrap', td: 'text-right tabular-nums' } },
   },
 ]
 
@@ -124,6 +124,12 @@ function compute(row: Row) {
 
 function recomputeAll() {
   rows.value.forEach(compute)
+}
+
+function bump(row: Row, key: keyof Row, delta: number) {
+  const val = parseNumber(row[key] as any) + delta
+  ;(row as any)[key] = Math.round(val * 100) / 100
+  compute(row)
 }
 
 function onFile(e: Event) {
@@ -182,81 +188,200 @@ onMounted(async () => {
 
     <UTable :data="rows" :columns="columns" sticky>
       <template #volWeek-cell="{ row }">
-        <UInput
-          size="xs"
-          variant="subtle"
-          inputmode="decimal"
-          step="any"
-          v-model="row.original['Volume/week']"
-          type="number"
-          @change="compute(row.original)"
-        />
+        <div class="flex items-center justify-end gap-1">
+          <UButton
+            size="xs"
+            variant="subtle"
+            icon="i-lucide-minus"
+            square
+            @click="bump(row.original, 'Volume/week', -1)"
+          />
+          <UInput
+            size="xs"
+            variant="subtle"
+            inputmode="decimal"
+            step="any"
+            class="w-20 text-right"
+            v-model="row.original['Volume/week']"
+            type="number"
+            @change="compute(row.original)"
+          />
+          <UButton
+            size="xs"
+            variant="subtle"
+            icon="i-lucide-plus"
+            square
+            @click="bump(row.original, 'Volume/week', 1)"
+          />
+        </div>
       </template>
       <template #avgMin-cell="{ row }">
-        <UInput
-          size="xs"
-          variant="subtle"
-          inputmode="decimal"
-          step="any"
-          v-model="row.original['Avg minutes/task']"
-          type="number"
-          @change="compute(row.original)"
-        />
+        <div class="flex items-center justify-end gap-1">
+          <UButton
+            size="xs"
+            variant="subtle"
+            icon="i-lucide-minus"
+            square
+            @click="bump(row.original, 'Avg minutes/task', -1)"
+          />
+          <UInput
+            size="xs"
+            variant="subtle"
+            inputmode="decimal"
+            step="any"
+            class="w-20 text-right"
+            v-model="row.original['Avg minutes/task']"
+            type="number"
+            @change="compute(row.original)"
+          />
+          <UButton
+            size="xs"
+            variant="subtle"
+            icon="i-lucide-plus"
+            square
+            @click="bump(row.original, 'Avg minutes/task', 1)"
+          />
+        </div>
       </template>
       <template #rate-cell="{ row }">
-        <UInput
-          size="xs"
-          variant="subtle"
-          inputmode="decimal"
-          step="any"
-          v-model="row.original['Loaded $/hr']"
-          type="number"
-          @change="compute(row.original)"
-        />
+        <div class="flex items-center justify-end gap-1">
+          <UButton
+            size="xs"
+            variant="subtle"
+            icon="i-lucide-minus"
+            square
+            @click="bump(row.original, 'Loaded $/hr', -5)"
+          />
+          <UInput
+            size="xs"
+            variant="subtle"
+            inputmode="decimal"
+            step="any"
+            class="w-20 text-right"
+            v-model="row.original['Loaded $/hr']"
+            type="number"
+            @change="compute(row.original)"
+          />
+          <UButton
+            size="xs"
+            variant="subtle"
+            icon="i-lucide-plus"
+            square
+            @click="bump(row.original, 'Loaded $/hr', 5)"
+          />
+        </div>
       </template>
       <template #deltaDef-cell="{ row }">
-        <UInput
-          size="xs"
-          variant="subtle"
-          inputmode="decimal"
-          step="any"
-          v-model="row.original['Delta defects/month']"
-          type="number"
-          @change="compute(row.original)"
-        />
+        <div class="flex items-center justify-end gap-1">
+          <UButton
+            size="xs"
+            variant="subtle"
+            icon="i-lucide-minus"
+            square
+            @click="bump(row.original, 'Delta defects/month', -1)"
+          />
+          <UInput
+            size="xs"
+            variant="subtle"
+            inputmode="decimal"
+            step="any"
+            class="w-20 text-right"
+            v-model="row.original['Delta defects/month']"
+            type="number"
+            @change="compute(row.original)"
+          />
+          <UButton
+            size="xs"
+            variant="subtle"
+            icon="i-lucide-plus"
+            square
+            @click="bump(row.original, 'Delta defects/month', 1)"
+          />
+        </div>
       </template>
       <template #perDef-cell="{ row }">
-        <UInput
-          size="xs"
-          variant="subtle"
-          inputmode="decimal"
-          step="any"
-          v-model="row.original['$ per defect']"
-          type="number"
-          @change="compute(row.original)"
-        />
+        <div class="flex items-center justify-end gap-1">
+          <UButton
+            size="xs"
+            variant="subtle"
+            icon="i-lucide-minus"
+            square
+            @click="bump(row.original, '$ per defect', -10)"
+          />
+          <UInput
+            size="xs"
+            variant="subtle"
+            inputmode="decimal"
+            step="any"
+            class="w-24 text-right"
+            v-model="row.original['$ per defect']"
+            type="number"
+            @change="compute(row.original)"
+          />
+          <UButton
+            size="xs"
+            variant="subtle"
+            icon="i-lucide-plus"
+            square
+            @click="bump(row.original, '$ per defect', 10)"
+          />
+        </div>
       </template>
       <template #cycleDays-cell="{ row }">
-        <UInput
-          size="xs"
-          variant="subtle"
-          inputmode="decimal"
-          step="any"
-          v-model="row.original['Cycle days saved']"
-          type="number"
-          @change="compute(row.original)"
-        />
+        <div class="flex items-center justify-end gap-1">
+          <UButton
+            size="xs"
+            variant="subtle"
+            icon="i-lucide-minus"
+            square
+            @click="bump(row.original, 'Cycle days saved', -1)"
+          />
+          <UInput
+            size="xs"
+            variant="subtle"
+            inputmode="decimal"
+            step="any"
+            class="w-16 text-right"
+            v-model="row.original['Cycle days saved']"
+            type="number"
+            @change="compute(row.original)"
+          />
+          <UButton
+            size="xs"
+            variant="subtle"
+            icon="i-lucide-plus"
+            square
+            @click="bump(row.original, 'Cycle days saved', 1)"
+          />
+        </div>
       </template>
       <template #perDay-cell="{ row }">
-        <UInput
-          size="xs"
-          variant="subtle"
-          inputmode="decimal"
-          step="any"
-          v-model="row.original['$ per day']"
-          type="number"
-          @change="compute(row.original)"
-        />
+        <div class="flex items-center justify-end gap-1">
+          <UButton
+            size="xs"
+            variant="subtle"
+            icon="i-lucide-minus"
+            square
+            @click="bump(row.original, '$ per day', -50)"
+          />
+          <UInput
+            size="xs"
+            variant="subtle"
+            inputmode="decimal"
+            step="any"
+            class="w-24 text-right"
+            v-model="row.original['$ per day']"
+            type="number"
+            @change="compute(row.original)"
+          />
+          <UButton
+            size="xs"
+            variant="subtle"
+            icon="i-lucide-plus"
+            square
+            @click="bump(row.original, '$ per day', 50)"
+          />
+        </div>
       </template>
       <template #impact-cell="{ row }">
         <div class="text-right tabular-nums">

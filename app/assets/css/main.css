@@ -14,3 +14,13 @@
 :root {
   --ui-container: var(--container-8xl);
 }
+
+/* Remove native number spinners for a cleaner look; we provide +/- buttons */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
