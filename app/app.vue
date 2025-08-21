@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const toaster = { position: 'top-right', expand: true }
+const toaster = { position: 'top-right' as const, expand: true }
 </script>
 
 <template>
@@ -11,6 +11,5 @@ const toaster = { position: 'top-right', expand: true }
       </main>
       <AppFooter />
     </UContainer>
-    <NuxtRouteAnnouncer />
   </UApp>
 </template>

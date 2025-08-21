@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import type { TableColumn } from '@nuxt/ui'
+
 type Row = { kpi: string; definition: string; method: string }
+type DRow = { area: string; kpi: string; definition: string; method: string }
+
 const core: Row[] = [
   {
     kpi: 'Minutes per task',
@@ -20,7 +24,7 @@ const core: Row[] = [
   },
   { kpi: 'Adoption', definition: 'Weekly active users / cohort', method: 'Platform analytics' },
 ]
-type DRow = { area: string; kpi: string; definition: string; method: string }
+
 const domain: DRow[] = [
   {
     area: 'Retrieval/Knowledge',
@@ -78,65 +82,67 @@ const domain: DRow[] = [
   },
 ]
 
+const coreColumns: TableColumn<Row>[] = [
+  { accessorKey: 'kpi', header: 'KPI' },
+  { accessorKey: 'definition', header: 'Definition' },
+  { accessorKey: 'method', header: 'Method' },
+]
+
+const domainColumns: TableColumn<DRow>[] = [
+  { accessorKey: 'area', header: 'Area' },
+  { accessorKey: 'kpi', header: 'KPI' },
+  { accessorKey: 'definition', header: 'Definition' },
+  { accessorKey: 'method', header: 'Method' },
+]
+
 function printPage() {
   window.print()
 }
 </script>
 
 <template>
-  <div class="space-y-4">
+  <div class="space-y-6">
     <div class="flex items-center justify-between">
-      <h1 class="text-xl font-semibold">KPI Catalog</h1>
-      <div class="flex gap-2">
-        <UButton icon="i-lucide-printer" variant="outline" @click="printPage"
-          >Print / Save PDF</UButton
-        >
+      <h1 class="text-2xl font-bold">KPI Catalog</h1>
+      <UButton icon="i-lucide-printer" variant="outline" @click="printPage">
+        Print / Save PDF
+      </UButton>
+    </div>
+
+    <div class="space-y-3">
+      <h2 class="text-lg font-medium mb-3">Core Measurement</h2>
+      <div class="border border-neutral-200 dark:border-neutral-700 rounded-lg overflow-hidden">
+        <UTable
+          :data="core"
+          :columns="coreColumns"
+          :ui="{
+            root: 'w-full',
+            base: 'w-full',
+            tbody:
+              'divide-y divide-neutral-200 dark:divide-neutral-700 [&>tr:nth-child(odd)]:bg-neutral-50 dark:[&>tr:nth-child(odd)]:bg-neutral-800/50',
+            td: 'px-4 py-2 text-sm whitespace-nowrap',
+            th: 'px-4 py-2 text-sm font-semibold bg-neutral-100 dark:bg-neutral-800',
+          }"
+        />
       </div>
     </div>
-    <UCard>
-      <template #header>Core Measurement</template>
-      <div class="overflow-x-auto">
-        <table class="w-full text-xs">
-          <thead class="sticky top-0 z-10 bg-default">
-            <tr class="border-b">
-              <th class="px-2 py-2 text-left uppercase tracking-wide text-toned">KPI</th>
-              <th class="px-2 py-2 text-left uppercase tracking-wide text-toned">Definition</th>
-              <th class="px-2 py-2 text-left uppercase tracking-wide text-toned">Method</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(r, i) in core" :key="i" class="border-b odd:bg-muted/40">
-              <td class="px-2 py-2">{{ r.kpi }}</td>
-              <td class="px-2 py-2">{{ r.definition }}</td>
-              <td class="px-2 py-2">{{ r.method }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </UCard>
 
-    <UCard>
-      <template #header>Domain‑Specific</template>
-      <div class="overflow-x-auto">
-        <table class="w-full text-xs">
-          <thead class="sticky top-0 z-10 bg-default">
-            <tr class="border-b">
-              <th class="px-2 py-2 text-left uppercase tracking-wide text-toned">Area</th>
-              <th class="px-2 py-2 text-left uppercase tracking-wide text-toned">KPI</th>
-              <th class="px-2 py-2 text-left uppercase tracking-wide text-toned">Definition</th>
-              <th class="px-2 py-2 text-left uppercase tracking-wide text-toned">Method</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(r, i) in domain" :key="i" class="border-b odd:bg-muted/40">
-              <td class="px-2 py-2">{{ r.area }}</td>
-              <td class="px-2 py-2">{{ r.kpi }}</td>
-              <td class="px-2 py-2">{{ r.definition }}</td>
-              <td class="px-2 py-2">{{ r.method }}</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="space-y-3">
+      <h2 class="text-lg font-medium mb-3">Domain‑Specific</h2>
+      <div class="border border-neutral-200 dark:border-neutral-700 rounded-lg overflow-hidden">
+        <UTable
+          :data="domain"
+          :columns="domainColumns"
+          :ui="{
+            root: 'w-full',
+            base: 'w-full',
+            tbody:
+              'divide-y divide-neutral-200 dark:divide-neutral-700 [&>tr:nth-child(odd)]:bg-neutral-50 dark:[&>tr:nth-child(odd)]:bg-neutral-800/50',
+            td: 'px-4 py-2 text-sm whitespace-nowrap',
+            th: 'px-4 py-2 text-sm font-semibold bg-neutral-100 dark:bg-neutral-800',
+          }"
+        />
       </div>
-    </UCard>
+    </div>
   </div>
 </template>

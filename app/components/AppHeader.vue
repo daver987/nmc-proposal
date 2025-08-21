@@ -1,8 +1,15 @@
+<script setup lang="ts">
+const route = useRoute()
+const access = useCookie('nmc_access')
+const isUnlocked = computed(() => access.value === 'ok')
+const onEnter = computed(() => route.path === '/enter')
+</script>
+
 <template>
-  <header class="py-4">
+  <header class="py-4 border-b border-gray-500/20">
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-2">
-        <span class="font-semibold tracking-wide">NMC Proposal</span>
+        <span class="font-bold text-xl tracking-wide">NMC Proposal</span>
       </div>
       <nav v-if="isUnlocked && !onEnter" class="flex items-center gap-2">
         <UButton
@@ -45,9 +52,3 @@
     </div>
   </header>
 </template>
-<script setup lang="ts">
-const route = useRoute()
-const access = useCookie('nmc_access')
-const isUnlocked = computed(() => access.value === 'ok')
-const onEnter = computed(() => route.path === '/enter')
-</script>
