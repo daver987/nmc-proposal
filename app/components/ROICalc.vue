@@ -26,22 +26,38 @@ const inputs = useStorage<RoiInputs>('roi-inputs', {
   dollarsPerDefect: 120,
   cycleDaysSaved: 1,
   dollarsPerDay: 1000,
-  monthlyCost: 4000
+  monthlyCost: 4000,
 })
 
-const labor = computed(() => Math.max(0, (inputs.value.minutesSavedPerTask / 60) * inputs.value.tasksPerMonth * inputs.value.loadedRatePerHour))
-const errorAvoid = computed(() => Math.max(0, (inputs.value.baselineDefects - inputs.value.postDefects) * inputs.value.dollarsPerDefect))
-const cycleVal = computed(() => Math.max(0, inputs.value.cycleDaysSaved * inputs.value.dollarsPerDay))
-const net = computed(() => Math.round(labor.value + errorAvoid.value + cycleVal.value - inputs.value.monthlyCost))
+const labor = computed(() =>
+  Math.max(
+    0,
+    (inputs.value.minutesSavedPerTask / 60) *
+      inputs.value.tasksPerMonth *
+      inputs.value.loadedRatePerHour
+  )
+)
+const errorAvoid = computed(() =>
+  Math.max(
+    0,
+    (inputs.value.baselineDefects - inputs.value.postDefects) * inputs.value.dollarsPerDefect
+  )
+)
+const cycleVal = computed(() =>
+  Math.max(0, inputs.value.cycleDaysSaved * inputs.value.dollarsPerDay)
+)
+const net = computed(() =>
+  Math.round(labor.value + errorAvoid.value + cycleVal.value - inputs.value.monthlyCost)
+)
 
 // Update shared metrics
-const metrics = useState('metrics', () => ({} as any))
+const metrics = useState('metrics', () => ({}) as any)
 watchEffect(() => {
   metrics.value = {
     labor: Math.round(labor.value),
     error: Math.round(errorAvoid.value),
     cycle: Math.round(cycleVal.value),
-    net: Math.round(net.value)
+    net: Math.round(net.value),
   }
 })
 
@@ -55,17 +71,17 @@ const chartData = computed(() => ({
         Math.round(labor.value),
         Math.round(errorAvoid.value),
         Math.round(cycleVal.value),
-        Math.round(net.value)
-      ]
-    }
-  ]
+        Math.round(net.value),
+      ],
+    },
+  ],
 }))
 
 const chartOptions = {
   responsive: true,
   maintainAspectRatio: false,
   plugins: { legend: { display: false } },
-  scales: { y: { ticks: { callback: (v: any) => `$${Number(v).toLocaleString()}` } } }
+  scales: { y: { ticks: { callback: (v: any) => `$${Number(v).toLocaleString()}` } } },
 }
 </script>
 
@@ -112,4 +128,3 @@ const chartOptions = {
     </div>
   </UCard>
 </template>
-

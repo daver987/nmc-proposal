@@ -13,7 +13,9 @@ function printPage() {
     <div class="flex items-center justify-between">
       <h1 class="text-xl font-semibold">KPI Catalog</h1>
       <div class="flex gap-2">
-        <UButton icon="i-lucide-printer" variant="outline" @click="printPage">Print / Save PDF</UButton>
+        <UButton icon="i-lucide-printer" variant="outline" @click="printPage"
+          >Print / Save PDF</UButton
+        >
       </div>
     </div>
     <UCard>
@@ -21,4 +23,3 @@ function printPage() {
     </UCard>
   </div>
 </template>
-

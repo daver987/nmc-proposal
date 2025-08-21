@@ -1,6 +1,21 @@
 <script setup lang="ts">
 const { public: pub } = useRuntimeConfig()
-const url = computed(() => pub.demoVideoUrl)
+
+function toEmbed(u: string | undefined) {
+  if (!u) return ''
+  try {
+    const url = new URL(u)
+    // Loom share → embed
+    if (url.hostname.includes('loom.com')) {
+      return url.href.replace('/share/', '/embed/')
+    }
+    return url.href
+  } catch {
+    return u
+  }
+}
+
+const url = computed(() => toEmbed(pub.demoVideoUrl))
 </script>
 
 <template>
@@ -25,4 +40,3 @@ const url = computed(() => pub.demoVideoUrl)
     </UCard>
   </div>
 </template>
-

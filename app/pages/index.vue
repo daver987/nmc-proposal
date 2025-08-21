@@ -26,4 +26,3 @@ const html = useSanitizedHtml(onePager)
     </UCard>
   </div>
 </template>
-

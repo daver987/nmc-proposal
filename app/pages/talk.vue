@@ -11,14 +11,15 @@ const lines = talk
   <div class="space-y-4">
     <h1 class="text-xl font-semibold">Talk Track</h1>
     <UCard>
-      <template #header>
-        Five key bullets for the conversation
-      </template>
+      <template #header> Five key bullets for the conversation </template>
       <div>
         <CopyLine v-for="(text, i) in lines" :key="i" :text="text" />
       </div>
     </UCard>
-    <UAlert color="yellow" title="Note" description="Email/snippets in docs are for context only and are not surfaced here." />
+    <UAlert
+      color="yellow"
+      title="Note"
+      description="Email/snippets in docs are for context only and are not surfaced here."
+    />
   </div>
 </template>
-

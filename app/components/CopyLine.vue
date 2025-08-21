@@ -13,4 +13,3 @@ const { copy, copied } = useClipboard({ source: () => props.text })
     <p class="leading-relaxed">{{ text }}</p>
   </div>
 </template>
-

@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       passcode: process.env.NUXT_PUBLIC_PASSCODE || '',
-      demoVideoUrl: process.env.NUXT_PUBLIC_DEMO_VIDEO_URL || ''
-    }
-  }
+      demoVideoUrl: process.env.NUXT_PUBLIC_DEMO_VIDEO_URL || '',
+    },
+  },
 })

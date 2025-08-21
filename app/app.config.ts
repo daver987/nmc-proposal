@@ -3,7 +3,6 @@ export default defineAppConfig({
     primary: 'amber',
     gray: 'zinc',
     // Subtle radius for a refined look
-    radius: 'lg'
-  }
+    radius: 'lg',
+  },
 })
-

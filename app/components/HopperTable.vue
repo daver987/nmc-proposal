@@ -8,6 +8,10 @@ type Row = {
   'Volume/week'?: number | string
   'Avg minutes/task'?: number | string
   'Loaded $/hr'?: number | string
+  'Delta defects/month'?: number | string
+  '$ per defect'?: number | string
+  'Cycle days saved'?: number | string
+  '$ per day'?: number | string
   'Defect rate %'?: number | string
   'Cycle time (days)'?: number | string
   'Queue time (days)'?: number | string
@@ -33,11 +37,18 @@ function compute(row: Row) {
   const volPerMonth = parseNumber(row['Volume/week']) * 4.33
   const avgMinutes = parseNumber(row['Avg minutes/task'])
   const rate = parseNumber(row['Loaded $/hr'])
+  const deltaDefects = parseNumber(row['Delta defects/month'])
+  const dollarsPerDefect = parseNumber(row['$ per defect'])
+  const cycleDaysSaved = parseNumber(row['Cycle days saved'])
+  const dollarsPerDay = parseNumber(row['$ per day'])
   const dataReady = parseNumber(row['Data readiness (1-5)'])
   const integration = parseNumber(row['Integration complexity (1-5)'])
   const change = parseNumber(row['Change impact (1-5)'])
   const confidence = Math.min(100, Math.max(0, parseNumber(row['Confidence (0-100%)'])))
-  const impact = (avgMinutes / 60) * volPerMonth * rate
+  const labor = (avgMinutes / 60) * volPerMonth * rate
+  const avoidance = deltaDefects * dollarsPerDefect
+  const cycle = cycleDaysSaved * dollarsPerDay
+  const impact = labor + avoidance + cycle
   const effort = dataReady + integration + change
   const rice = effort > 0 ? (volPerMonth * impact * (confidence / 100)) / effort : 0
   row['Impact $/mo'] = Math.round(impact)
@@ -59,7 +70,7 @@ function onFile(e: Event) {
     complete: (res) => {
       rows.value = res.data
       recomputeAll()
-    }
+    },
   })
 }
 
@@ -75,16 +86,11 @@ function exportCSV() {
 }
 
 // Seed from bundled template once if empty
+import csvRaw from '~/docs/reference/NMC_Opportunity_Scoring_Template.csv?raw'
 if (rows.value.length === 0) {
-  const url = '/docs/reference/NMC_Opportunity_Scoring_Template.csv'
-  fetch(url)
-    .then((r) => r.text())
-    .then((t) => {
-      const res = Papa.parse<Row>(t, { header: true, skipEmptyLines: true })
-      rows.value = res.data
-      recomputeAll()
-    })
-    .catch(() => {})
+  const res = Papa.parse<Row>(csvRaw, { header: true, skipEmptyLines: true })
+  rows.value = res.data
+  recomputeAll()
 }
 </script>
 
@@ -101,35 +107,74 @@ if (rows.value.length === 0) {
       <UButton variant="outline" @click="recomputeAll">Recompute</UButton>
     </div>
 
-    <UTable :rows="rows" :columns="[
-      { key: 'Area' },
-      { key: 'Workflow' },
-      { key: 'Volume/week', label: 'Vol/wk' },
-      { key: 'Avg minutes/task', label: 'Min/task' },
-      { key: 'Loaded $/hr', label: '$/hr' },
-      { key: 'Impact $/mo', label: 'Impact $/mo' },
-      { key: 'Effort score', label: 'Effort' },
-      { key: 'RICE score', label: 'RICE' }
-    ]">
-      <template #"Volume/week"-data="{ row }">
-        <UInput v-model="row['Volume/week']" type="number" @change="compute(row)" />
-      </template>
-      <template #"Avg minutes/task"-data="{ row }">
-        <UInput v-model="row['Avg minutes/task']" type="number" @change="compute(row)" />
-      </template>
-      <template #"Loaded $/hr"-data="{ row }">
-        <UInput v-model="row['Loaded $/hr']" type="number" @change="compute(row)" />
-      </template>
-      <template #"Impact $/mo"-data="{ row }">
-        <span class="tabular-nums">{{ row['Impact $/mo']?.toLocaleString?.() ?? '-' }}</span>
-      </template>
-      <template #"Effort score"-data="{ row }">
-        <span class="tabular-nums">{{ row['Effort score'] ?? '-' }}</span>
-      </template>
-      <template #"RICE score"-data="{ row }">
-        <UBadge color="primary" variant="soft" class="tabular-nums">{{ row['RICE score'] ?? '-' }}</UBadge>
-      </template>
-    </UTable>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b">
+            <th class="p-2 text-left">Area</th>
+            <th class="p-2 text-left">Workflow</th>
+            <th class="p-2 text-right">Vol/wk</th>
+            <th class="p-2 text-right">Min/task</th>
+            <th class="p-2 text-right">$/hr</th>
+            <th class="p-2 text-right">Δ defects/mo</th>
+            <th class="p-2 text-right">$/defect</th>
+            <th class="p-2 text-right">Cycle days</th>
+            <th class="p-2 text-right">$/day</th>
+            <th class="p-2 text-right">Impact $/mo</th>
+            <th class="p-2 text-right">Effort</th>
+            <th class="p-2 text-right">RICE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(r, i) in rows" :key="i" class="border-b">
+            <td class="p-2">{{ r['Area'] }}</td>
+            <td class="p-2">{{ r['Workflow'] }}</td>
+            <td class="p-2 text-right">
+              <UInput size="xs" v-model="r['Volume/week']" type="number" @change="compute(r)" />
+            </td>
+            <td class="p-2 text-right">
+              <UInput
+                size="xs"
+                v-model="r['Avg minutes/task']"
+                type="number"
+                @change="compute(r)"
+              />
+            </td>
+            <td class="p-2 text-right">
+              <UInput size="xs" v-model="r['Loaded $/hr']" type="number" @change="compute(r)" />
+            </td>
+            <td class="p-2 text-right">
+              <UInput
+                size="xs"
+                v-model="r['Delta defects/month']"
+                type="number"
+                @change="compute(r)"
+              />
+            </td>
+            <td class="p-2 text-right">
+              <UInput size="xs" v-model="r['$ per defect']" type="number" @change="compute(r)" />
+            </td>
+            <td class="p-2 text-right">
+              <UInput
+                size="xs"
+                v-model="r['Cycle days saved']"
+                type="number"
+                @change="compute(r)"
+              />
+            </td>
+            <td class="p-2 text-right">
+              <UInput size="xs" v-model="r['$ per day']" type="number" @change="compute(r)" />
+            </td>
+            <td class="p-2 text-right tabular-nums">
+              {{ r['Impact $/mo']?.toLocaleString?.() ?? '-' }}
+            </td>
+            <td class="p-2 text-right tabular-nums">{{ r['Effort score'] ?? '-' }}</td>
+            <td class="p-2 text-right tabular-nums">
+              <UBadge color="primary" variant="soft">{{ r['RICE score'] ?? '-' }}</UBadge>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
-

@@ -29,4 +29,3 @@ const metrics = useState<Metrics>('metrics', () => ({}))
     </UCard>
   </div>
 </template>
-

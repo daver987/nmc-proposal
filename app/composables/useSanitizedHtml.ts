@@ -7,4 +7,3 @@ export function useSanitizedHtml(raw: string) {
   html = html.replace(/ on[a-z]+='[^']*'/gi, '')
   return html
 }
-

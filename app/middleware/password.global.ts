@@ -9,4 +9,3 @@ export default defineNuxtRouteMiddleware((to) => {
     return navigateTo(`/enter?next=${next}`)
   }
 })
-
