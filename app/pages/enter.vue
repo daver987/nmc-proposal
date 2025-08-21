@@ -26,9 +26,13 @@ function submit() {
     toast.add({
       title: 'Invalid passcode',
       description: 'Please try again.',
+      icon: 'i-lucide-shield-x',
       color: 'error',
       duration: 0,
       orientation: 'vertical',
+      ui: {
+        root: 'relative bg-error/5 ring-error before:content-[""] before:absolute before:inset-y-0 before:left-0 before:w-1.5 before:bg-error',
+      },
       actions: [
         {
           icon: 'i-lucide-eraser',
