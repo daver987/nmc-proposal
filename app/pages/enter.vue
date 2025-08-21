@@ -20,6 +20,14 @@ function normalizeNext(n?: string) {
 function submit() {
   if (form.passcode && form.passcode === pub.passcode) {
     cookie.value = 'ok'
+    toast.add({
+      title: 'Access granted',
+      description: 'Welcome.',
+      icon: 'i-lucide-check-circle',
+      color: 'success',
+      duration: 2000,
+      orientation: 'horizontal',
+    })
     const next = normalizeNext(route.query.next as string)
     router.push(next)
   } else {
