@@ -22,24 +22,6 @@ const showHero = ref(true)
           Operational AI Audit & Activation
         </h1>
         <p class="text-base text-toned">Proposal for New Mountain Capital</p>
-        <div class="flex flex-wrap gap-2 pt-2">
-          <NuxtLink to="/roi">
-            <UButton color="primary" class="transition-transform hover:-translate-y-0.5"
-              >Open ROI Calculator</UButton
-            >
-          </NuxtLink>
-          <NuxtLink to="/hopper">
-            <UButton variant="outline" class="transition-transform hover:-translate-y-0.5"
-              >Open Opportunity Hopper</UButton
-            >
-          </NuxtLink>
-          <NuxtLink
-            to="/kpi"
-            class="inline-flex items-center text-sm text-muted hover:text-highlighted"
-          >
-            <span>View KPI Catalog</span>
-          </NuxtLink>
-        </div>
       </div>
       <div v-if="showHero" class="hidden md:block">
         <img
