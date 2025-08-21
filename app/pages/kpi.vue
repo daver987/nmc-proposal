@@ -3,6 +3,7 @@ import type { TableColumn } from '@nuxt/ui'
 
 type Row = { kpi: string; definition: string; method: string }
 type DRow = { area: string; kpi: string; definition: string; method: string }
+type RRow = { component: string; formula: string; notes: string }
 
 const core: Row[] = [
   {
@@ -82,6 +83,29 @@ const domain: DRow[] = [
   },
 ]
 
+const roiMath: RRow[] = [
+  {
+    component: 'Labor savings ($/mo)',
+    formula: '(Minutes saved/task ÷ 60) × Tasks/month × Loaded $/hr',
+    notes: 'Loaded rate includes benefits/overhead',
+  },
+  {
+    component: 'Error cost avoidance',
+    formula: '(Baseline defects – Post defects) × Avg $/defect',
+    notes: 'Use historical rework cost',
+  },
+  {
+    component: 'Cycle-time value',
+    formula: '(Baseline days – Post days) × $/day value',
+    notes: 'Applies when faster completion has financial value',
+  },
+  {
+    component: 'Net ROI',
+    formula: 'Labor + Avoidance + Cycle – (Tool + Change + Build)',
+    notes: 'All per month',
+  },
+]
+
 const coreColumns: TableColumn<Row>[] = [
   { accessorKey: 'kpi', header: 'KPI' },
   { accessorKey: 'definition', header: 'Definition' },
@@ -93,6 +117,12 @@ const domainColumns: TableColumn<DRow>[] = [
   { accessorKey: 'kpi', header: 'KPI' },
   { accessorKey: 'definition', header: 'Definition' },
   { accessorKey: 'method', header: 'Method' },
+]
+
+const roiColumns: TableColumn<RRow>[] = [
+  { accessorKey: 'component', header: 'Component' },
+  { accessorKey: 'formula', header: 'Formula' },
+  { accessorKey: 'notes', header: 'Notes' },
 ]
 
 function printPage() {
@@ -133,6 +163,24 @@ function printPage() {
         <UTable
           :data="domain"
           :columns="domainColumns"
+          :ui="{
+            root: 'w-full',
+            base: 'w-full',
+            tbody:
+              'divide-y divide-neutral-200 dark:divide-neutral-700 [&>tr:nth-child(odd)]:bg-neutral-50 dark:[&>tr:nth-child(odd)]:bg-neutral-800/50',
+            td: 'px-4 py-2 text-sm whitespace-nowrap',
+            th: 'px-4 py-2 text-sm font-semibold bg-neutral-100 dark:bg-neutral-800',
+          }"
+        />
+      </div>
+    </div>
+
+    <div class="space-y-3">
+      <h2 class="text-lg font-medium mb-3">ROI Math (template)</h2>
+      <div class="border border-neutral-200 dark:border-neutral-700 rounded-lg overflow-hidden">
+        <UTable
+          :data="roiMath"
+          :columns="roiColumns"
           :ui="{
             root: 'w-full',
             base: 'w-full',

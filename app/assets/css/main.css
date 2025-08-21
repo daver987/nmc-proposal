@@ -9,18 +9,22 @@
 @theme {
   /* Wider container for presentation pages */
   --container-8xl: 90rem;
+  --color-amber-50: #f7f2ee;
+  --color-amber-100: #eee5dd;
+  --color-amber-200: #deccba;
+  --color-amber-300: #cdb398;
+  --color-amber-400: #bd9975;
+  --color-amber-500: #a57c52;
+  --color-amber-600: #8a6642;
+  --color-amber-700: #674d32;
+  --color-amber-800: #453321;
+  --color-amber-900: #221a11;
 }
 
 :root {
   --ui-container: var(--container-8xl);
 }
 
-/* Remove native number spinners for a cleaner look; we provide +/- buttons */
-input[type='number']::-webkit-outer-spin-button,
-input[type='number']::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-input[type='number'] {
-  -moz-appearance: textfield;
+body {
+  background-color: var(--color-zinc-950);
 }
