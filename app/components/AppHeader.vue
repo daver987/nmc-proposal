@@ -40,14 +40,6 @@ const onEnter = computed(() => route.path === '/enter')
           class="transition-transform hover:-translate-y-0.5"
           >Opportunity Hopper</UButton
         >
-        <UButton
-          size="sm"
-          variant="outline"
-          color="primary"
-          to="/demo"
-          class="transition-transform hover:-translate-y-0.5"
-          >Demo</UButton
-        >
       </nav>
     </div>
   </header>
