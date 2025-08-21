@@ -10,11 +10,8 @@ const hasMetrics = computed(() =>
   )
 )
 
-let heroImg: string | undefined
-try {
-  // @ts-ignore
-  heroImg = (await import('~/docs/index-image.png?url')).default as string
-} catch {}
+const heroSrc = '/index-image.png' // place image in /public/index-image.png to display
+const showHero = ref(true)
 </script>
 
 <template>
@@ -44,11 +41,12 @@ try {
           </NuxtLink>
         </div>
       </div>
-      <div v-if="heroImg" class="hidden md:block">
+      <div v-if="showHero" class="hidden md:block">
         <img
-          :src="heroImg"
+          :src="heroSrc"
           alt="Proposal overview"
           class="w-full rounded-xl border border-default"
+          @error="showHero = false"
         />
       </div>
     </div>
