@@ -3,6 +3,7 @@ const route = useRoute()
 const router = useRouter()
 const form = reactive({ passcode: '' })
 const { public: pub } = useRuntimeConfig()
+const toast = useToast()
 const cookie = useCookie('nmc_access', { sameSite: 'lax', path: '/' })
 
 function normalizeNext(n?: string) {
@@ -21,7 +22,12 @@ function submit() {
     const next = normalizeNext(route.query.next as string)
     router.push(next)
   } else {
-    alert('Incorrect passcode')
+    toast.add({
+      title: 'Invalid passcode',
+      description: 'Please try again or contact the presenter.',
+      color: 'error',
+      duration: 3000,
+    })
   }
 }
 </script>
@@ -42,6 +48,9 @@ function submit() {
       </UForm>
       <template #footer>
         <span class="text-xs text-muted">Protected content requires a one-time passcode.</span>
+        <span v-if="!pub.passcode" class="ml-2 text-xs text-toned"
+          >Passcode not set — dev mode allows access.</span
+        >
       </template>
     </UCard>
   </div>
