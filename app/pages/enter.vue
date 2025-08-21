@@ -72,7 +72,12 @@ function submit() {
             ref="inputRef"
             v-model="form.passcode"
             type="password"
-            autocomplete="off"
+            name="passcode"
+            autocomplete="one-time-code"
+            autocapitalize="off"
+            spellcheck="false"
+            data-1p-ignore="true"
+            data-lpignore="true"
             size="lg"
           />
         </UFormField>
