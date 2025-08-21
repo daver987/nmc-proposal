@@ -184,6 +184,9 @@ onMounted(async () => {
       <template #volWeek-cell="{ row }">
         <UInput
           size="xs"
+          variant="subtle"
+          inputmode="decimal"
+          step="any"
           v-model="row.original['Volume/week']"
           type="number"
           @change="compute(row.original)"
@@ -192,6 +195,9 @@ onMounted(async () => {
       <template #avgMin-cell="{ row }">
         <UInput
           size="xs"
+          variant="subtle"
+          inputmode="decimal"
+          step="any"
           v-model="row.original['Avg minutes/task']"
           type="number"
           @change="compute(row.original)"
@@ -200,6 +206,9 @@ onMounted(async () => {
       <template #rate-cell="{ row }">
         <UInput
           size="xs"
+          variant="subtle"
+          inputmode="decimal"
+          step="any"
           v-model="row.original['Loaded $/hr']"
           type="number"
           @change="compute(row.original)"
@@ -208,6 +217,9 @@ onMounted(async () => {
       <template #deltaDef-cell="{ row }">
         <UInput
           size="xs"
+          variant="subtle"
+          inputmode="decimal"
+          step="any"
           v-model="row.original['Delta defects/month']"
           type="number"
           @change="compute(row.original)"
@@ -216,6 +228,9 @@ onMounted(async () => {
       <template #perDef-cell="{ row }">
         <UInput
           size="xs"
+          variant="subtle"
+          inputmode="decimal"
+          step="any"
           v-model="row.original['$ per defect']"
           type="number"
           @change="compute(row.original)"
@@ -224,6 +239,9 @@ onMounted(async () => {
       <template #cycleDays-cell="{ row }">
         <UInput
           size="xs"
+          variant="subtle"
+          inputmode="decimal"
+          step="any"
           v-model="row.original['Cycle days saved']"
           type="number"
           @change="compute(row.original)"
@@ -232,6 +250,9 @@ onMounted(async () => {
       <template #perDay-cell="{ row }">
         <UInput
           size="xs"
+          variant="subtle"
+          inputmode="decimal"
+          step="any"
           v-model="row.original['$ per day']"
           type="number"
           @change="compute(row.original)"
