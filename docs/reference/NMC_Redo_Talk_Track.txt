@@ -1,0 +1,11 @@
+Redo Talk Track (Balanced — Evaluation First)
+
+1) “You asked how I decide where AI should go. I don’t start with tools; I start with unit economics. We inventory workflows, measure minutes/defects/cycle time, and quantify dollar impact.”
+
+2) “We rank opportunities with RICE: Reach×Impact×Confidence/Effort. Confidence comes from your baselines, not my guesses.”
+
+3) “Two pilots in 30–45 days. Each gets acceptance criteria: a specific minutes‑per‑task reduction with 95% confidence, non‑worse defect rate, and a target adoption count in the cohort.”
+
+4) “Architecture is boring by design: ChatGPT Enterprise connectors + Deep Research for knowledge work; MCP only when we must. No rip‑and‑replace; we avoid vendor politics.”
+
+5) “You’ll see numbers weekly: opportunity hopper with $ impact, pilot scorecards, and an adoption dashboard. If the numbers don’t clear the gate, we kill it and pick the next one.”

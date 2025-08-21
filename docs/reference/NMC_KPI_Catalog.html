@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>NMC KPI Catalog & Measurement Plan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        font-family:
+          -apple-system,
+          BlinkMacSystemFont,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif;
+        margin: 36px;
+        color: #0f172a;
+      }
+      h1 {
+        font-size: 26px;
+        margin: 0 0 8px 0;
+      }
+      h2 {
+        font-size: 18px;
+        margin-top: 24px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 10px;
+      }
+      th,
+      td {
+        border: 1px solid #e5e7eb;
+        padding: 10px;
+        text-align: left;
+        font-size: 14px;
+      }
+      th {
+        background: #f8fafc;
+      }
+      .small {
+        font-size: 12px;
+        color: #64748b;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>NMC KPI Catalog & Measurement Plan</h1>
+    <p class="small">Definitions only — targets set after Week‑1/2 baselining.</p>
+
+    <h2>Core Measurement</h2>
+    <table>
+      <tr>
+        <th>KPI</th>
+        <th>Definition</th>
+        <th>Measurement Method</th>
+      </tr>
+      <tr>
+        <td>Minutes per task</td>
+        <td>Active work minutes to complete a task</td>
+        <td>Time sampling or app telemetry; exclude queue time</td>
+      </tr>
+      <tr>
+        <td>Cycle time</td>
+        <td>Start→finish elapsed time</td>
+        <td>Timestamps on artifacts (emails, files, tickets)</td>
+      </tr>
+      <tr>
+        <td>Defect rate</td>
+        <td>% of tasks failing QC or needing rework</td>
+        <td>QC checklist; revision counts</td>
+      </tr>
+      <tr>
+        <td>First‑pass yield</td>
+        <td>% completed without rework</td>
+        <td>QC logs</td>
+      </tr>
+      <tr>
+        <td>Throughput</td>
+        <td>Tasks per person per week</td>
+        <td>Count of completed tasks in system of record</td>
+      </tr>
+      <tr>
+        <td>Adoption</td>
+        <td>Weekly active users / target cohort</td>
+        <td>Platform analytics</td>
+      </tr>
+    </table>
+
+    <h2>Domain‑Specific</h2>
+    <table>
+      <tr>
+        <th>Area</th>
+        <th>KPI</th>
+        <th>Definition</th>
+        <th>Method</th>
+      </tr>
+      <tr>
+        <td>Retrieval/Knowledge</td>
+        <td>Task success rate</td>
+        <td>User obtains correct doc/answer within SLA with citation</td>
+        <td>Task bank sampled weekly (n≥30)</td>
+      </tr>
+      <tr>
+        <td>Retrieval/Knowledge</td>
+        <td>Time‑to‑answer</td>
+        <td>Seconds to first correct result</td>
+        <td>Observer timing; chat logs</td>
+      </tr>
+      <tr>
+        <td>LP Reporting</td>
+        <td>Prep minutes/report</td>
+        <td>Sum of time for data collection + drafting</td>
+        <td>Time sampling; template timestamps</td>
+      </tr>
+      <tr>
+        <td>LP Reporting</td>
+        <td>Revision cycles</td>
+        <td># of redlines per report</td>
+        <td>File version history</td>
+      </tr>
+      <tr>
+        <td>Due Diligence</td>
+        <td>Docs triaged/hour</td>
+        <td>Rate of classification & extraction</td>
+        <td>Batch logs</td>
+      </tr>
+      <tr>
+        <td>Due Diligence</td>
+        <td>Checklist completeness</td>
+        <td>% of required items present</td>
+        <td>QC checklist</td>
+      </tr>
+      <tr>
+        <td>HR/Onboarding</td>
+        <td>Time‑to‑onboard</td>
+        <td>Offer→day‑one elapsed time</td>
+        <td>HRIS timestamps</td>
+      </tr>
+      <tr>
+        <td>Finance/Close</td>
+        <td>Close‑cycle days</td>
+        <td>Month‑end day count</td>
+        <td>Calendar/ERP</td>
+      </tr>
+      <tr>
+        <td>Compliance</td>
+        <td>Policy lookup time</td>
+        <td>Seconds to find correct policy</td>
+        <td>Task samples</td>
+      </tr>
+    </table>
+
+    <h2>ROI Math (template)</h2>
+    <table>
+      <tr>
+        <th>Component</th>
+        <th>Formula</th>
+        <th>Notes</th>
+      </tr>
+      <tr>
+        <td>Labor savings ($/mo)</td>
+        <td>(Minutes saved/task ÷ 60) × Tasks/month × Loaded $/hr</td>
+        <td>Loaded rate includes benefits/overhead</td>
+      </tr>
+      <tr>
+        <td>Error cost avoidance</td>
+        <td>(Baseline defects − Post defects) × Avg $/defect</td>
+        <td>Use historical rework cost</td>
+      </tr>
+      <tr>
+        <td>Cycle‑time value</td>
+        <td>(Baseline days − Post days) × $/day value</td>
+        <td>Applies when faster completion has financial value</td>
+      </tr>
+      <tr>
+        <td>Net ROI</td>
+        <td>Labor + Avoidance + Cycle − (Tool + Change + Build)</td>
+        <td>All per month</td>
+      </tr>
+    </table>
+  </body>
+</html>

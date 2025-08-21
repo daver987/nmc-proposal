@@ -1,0 +1,9 @@
+.nuxt
+node_modules
+.output
+.vercel
+.git
+dist
+coverage
+pnpm-lock.yaml
+public

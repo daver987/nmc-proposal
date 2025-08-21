@@ -1,0 +1,7 @@
+Area,Workflow,Volume/week,Avg minutes/task,Loaded $/hr,Defect rate %,Cycle time (days),Queue time (days),Data readiness (1-5),Integration complexity (1-5),Change impact (1-5),Risk (1-5),Confidence (0-100%),Impact $/mo,Effort score,RICE score,Notes
+Ops,LP reporting,,,,,,,,,,,,,,,
+Legal,Contract review,,,,,,,,,,,,,,,
+Finance,Month-end close support,,,,,,,,,,,,,,,
+IR,Investor FAQ handling,,,,,,,,,,,,,,,
+HR,Onboarding packet,,,,,,,,,,,,,,,
+IT,Policy lookup bot,,,,,,,,,,,,,,,

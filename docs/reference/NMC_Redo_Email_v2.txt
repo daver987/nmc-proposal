@@ -1,0 +1,17 @@
+Subject: 15‑minute redo — Balanced evaluation plan + quick‑win pilots
+
+Sarah (cc Dan),
+
+May I request 15 minutes to show Michael a balanced plan that starts with his question: “How do you decide where AI should go?”
+
+I’ll walk through a short evaluation method (measure unit economics → score opportunities with RICE → pilot with numeric gates), a KPI catalog with definitions (no vague promises; baselines first), and two quick‑win pilots we can validate in 30–45 days. The approach is model‑agnostic and aligns to your ChatGPT Enterprise rollout—no rip‑and‑replace on Day 1.
+
+Attached:
+• One‑pager: Operational AI Audit & Activation (balanced plan)
+• KPI catalog (definitions + measurement)
+• Opportunity scoring template (CSV)
+
+If helpful, I can keep it to the 90‑second video + 5‑bullet talk track and book 15 minutes for Q&A.
+
+Thank you,
+David

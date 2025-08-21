@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ROI Calculator — Fill Your Baselines</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        font-family:
+          -apple-system,
+          BlinkMacSystemFont,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif;
+        margin: 30px;
+        color: #0f172a;
+      }
+      input {
+        padding: 8px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        width: 140px;
+        margin: 4px;
+      }
+      label {
+        display: block;
+        margin-top: 8px;
+        font-size: 14px;
+      }
+      .row {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .card {
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 16px;
+        margin-top: 12px;
+      }
+      .big {
+        font-size: 22px;
+        margin-top: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ROI Calculator (enter your baselines)</h1>
+    <div class="card">
+      <div class="row">
+        <div>
+          <label>Minutes saved per task</label>
+          <input id="mins" type="number" value="5" />
+        </div>
+        <div>
+          <label>Tasks per month</label>
+          <input id="tasks" type="number" value="400" />
+        </div>
+        <div>
+          <label>Loaded $/hour</label>
+          <input id="rate" type="number" value="95" />
+        </div>
+        <div>
+          <label>Defects (baseline)</label>
+          <input id="defb" type="number" value="40" />
+        </div>
+        <div>
+          <label>Defects (post)</label>
+          <input id="defp" type="number" value="28" />
+        </div>
+        <div>
+          <label>$ per defect</label>
+          <input id="defc" type="number" value="120" />
+        </div>
+        <div>
+          <label>Cycle time saved (days)</label>
+          <input id="days" type="number" value="1" />
+        </div>
+        <div>
+          <label>$ value per day</label>
+          <input id="dayv" type="number" value="1000" />
+        </div>
+        <div>
+          <label>Monthly tool + change + build cost ($)</label>
+          <input id="cost" type="number" value="4000" />
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="big">Labor savings: $<span id="lab">0</span>/mo</div>
+      <div class="big">Error avoidance: $<span id="err">0</span>/mo</div>
+      <div class="big">Cycle-time value: $<span id="cyc">0</span>/mo</div>
+      <div class="big">
+        <strong>Net ROI: $<span id="roi">0</span>/mo</strong>
+      </div>
+    </div>
+    <script>
+      function calc() {
+        {
+          const mins = parseFloat(document.getElementById('mins').value) || 0
+          const tasks = parseFloat(document.getElementById('tasks').value) || 0
+          const rate = parseFloat(document.getElementById('rate').value) || 0
+          const defb = parseFloat(document.getElementById('defb').value) || 0
+          const defp = parseFloat(document.getElementById('defp').value) || 0
+          const defc = parseFloat(document.getElementById('defc').value) || 0
+          const days = parseFloat(document.getElementById('days').value) || 0
+          const dayv = parseFloat(document.getElementById('dayv').value) || 0
+          const cost = parseFloat(document.getElementById('cost').value) || 0
+          const labor = (mins / 60.0) * tasks * rate
+          const err = (defb - defp) * defc
+          const cyc = days * dayv
+          const roi = labor + err + cyc - cost
+          document.getElementById('lab').innerText = Math.round(labor).toLocaleString()
+          document.getElementById('err').innerText = Math.round(err).toLocaleString()
+          document.getElementById('cyc').innerText = Math.round(cyc).toLocaleString()
+          document.getElementById('roi').innerText = Math.round(roi).toLocaleString()
+        }
+      }
+      document.querySelectorAll('input').forEach((i) => i.addEventListener('input', calc))
+      calc()
+    </script>
+  </body>
+</html>

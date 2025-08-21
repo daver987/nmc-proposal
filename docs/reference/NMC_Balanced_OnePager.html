@@ -1,0 +1,271 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>NMC Operational AI Opportunity Audit & Activation — Balanced Plan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        font-family:
+          -apple-system,
+          BlinkMacSystemFont,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif;
+        margin: 36px;
+        color: #0f172a;
+      }
+      h1 {
+        font-size: 28px;
+        margin: 0 0 6px 0;
+      }
+      h2 {
+        font-size: 18px;
+        margin-top: 26px;
+      }
+      h3 {
+        font-size: 15px;
+        margin-top: 18px;
+      }
+      p,
+      li {
+        line-height: 1.5;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .card {
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 14px;
+      }
+      .badge {
+        display: inline-block;
+        background: #eef2ff;
+        padding: 6px 10px;
+        border-radius: 8px;
+        font-size: 12px;
+        margin: 8px 0 16px;
+      }
+      .mono {
+        font-family:
+          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+          monospace;
+        font-size: 12px;
+      }
+      footer {
+        margin-top: 30px;
+        color: #64748b;
+        font-size: 12px;
+      }
+      @media (max-width: 860px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>NMC Operational AI Opportunity Audit & Activation — Balanced Plan</h1>
+    <div class="badge">
+      Discovery → Prioritize → Pilot → Prove ROI → Scale • Prepared 2025-08-21 05:59
+    </div>
+
+    <h2>Objective</h2>
+    <p>
+      In 45–60 days, deliver <strong>(a)</strong> a defensible map of NMC’s high‑impact AI
+      opportunities across Ops/Finance/HR/IR/Legal, <strong>(b)</strong> two production‑grade quick
+      wins with measured ROI, and <strong>(c)</strong> an adoption program for non‑technical users.
+      Leverage ChatGPT Enterprise connectors + Deep Research and, where needed, MCP tools. No
+      rip‑and‑replace on Day 1.
+    </p>
+
+    <h2>How I determine where AI should go (the evaluation method)</h2>
+    <ol>
+      <li>
+        <strong>Inventory & Shadow</strong> — 8–12 stakeholder interviews + 4–6 process shadow
+        sessions per function. Artifacts: SOPs, checklists, report templates, email/Teams snippets.
+      </li>
+      <li>
+        <strong>Measure the baseline</strong> — time‑on‑task sampling; pull simple operational logs
+        where available (e.g., SharePoint/Drive activity, email volume, report revision counts).
+        Create a <em>metrics sheet</em> for each candidate workflow.
+      </li>
+      <li>
+        <strong>Quantify the unit economics</strong> — for each workflow: volume/week, avg
+        minutes/task, loaded labor rate, defect/rework rate, cycle time, queue time, blocker count.
+      </li>
+      <li>
+        <strong>Score opportunities</strong> — Impact ($/mo) = hours saved × loaded rate + error
+        cost avoidance + cycle‑time value. Effort = data readiness + integration + change. Risk =
+        compliance + reputational + model failure impact. Confidence = quality of baseline. Compute
+        <span class="mono">RICE = Reach×Impact×Confidence / Effort</span>.
+      </li>
+      <li>
+        <strong>Pilot with acceptance criteria</strong> — one pager per pilot: well‑formed input,
+        expected output, guardrails, and <em>numeric pass/fail gates</em>.
+      </li>
+      <li>
+        <strong>Prove with numbers</strong> — A/B or pre/post with matched samples; instrumentation
+        baked into the workflow (minutes saved, error rate, rework).
+      </li>
+    </ol>
+
+    <h2>Phase Plan</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Phase 1 — Discovery & Baseline (Weeks 1–2)</h3>
+        <ul>
+          <li>Stakeholder map: Ops, Finance/Accounting, IR/LP, Legal/Compliance, HR, IT.</li>
+          <li>Capture 20–30 candidate workflows with metrics sheet per workflow.</li>
+          <li>
+            Stand up
+            <strong>ChatGPT Enterprise connectors</strong> (SharePoint/OneDrive/Drive/Outlook/Teams)
+            to remove knowledge friction for discovery work.
+          </li>
+          <li>Publish a living <strong>Opportunity Hopper</strong> (scoring template attached).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Phase 2 — Prioritize & Pilot (Weeks 3–6)</h3>
+        <ul>
+          <li>Pick Top‑5 by RICE; launch 2 quick‑win pilots.</li>
+          <li>Acceptance criteria per pilot (see below).</li>
+          <li>Enablement for end‑users: 6× 60‑sec micro‑videos + one‑page job aids.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Phase 3 — Scale & Govern (Weeks 7–9)</h3>
+        <ul>
+          <li>Graduate pilots that hit gates; expand to next 2–3 teams.</li>
+          <li>Governance: permissions-inherit, citations‑on, audit logging, usage analytics.</li>
+          <li>Quarterly ROI roll‑up + next‑tranche roadmap.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Candidate quick wins (examples; will validate with baseline)</h2>
+    <ul>
+      <li>
+        <strong>Investor/LP reporting assist</strong> — assemble inputs, draft commentary with
+        citations inside Word/Excel via ChatGPT for Teams.
+      </li>
+      <li>
+        <strong>Due diligence packet triage</strong> — classify, extract key fields, generate a
+        closing checklist and gap list.
+      </li>
+      <li>
+        <strong>Policy/FAQ assistant</strong> — internal Teams bot for common Ops/HR/IT questions;
+        answers carry citations; unresolved → human.
+      </li>
+      <li>
+        <strong>Contract review aide</strong> — clause extraction & variance highlights for
+        NDAs/MSAs; attorney review remains mandatory.
+      </li>
+    </ul>
+
+    <h2>KPIs & Acceptance Criteria</h2>
+    <p>
+      <em
+        >We don’t guess targets before we measure. Below are the <u>definitions</u> and
+        <u>gates</u> we will use; baselines come from Phase‑1 sampling.</em
+      >
+    </p>
+    <div class="grid">
+      <div class="card">
+        <h3>Cross‑workflow</h3>
+        <ul>
+          <li><strong>Minutes per task</strong> (avg, p50, p90).</li>
+          <li>
+            <strong>Cycle time</strong> (start→finish) & <strong>queue time</strong> (waiting).
+          </li>
+          <li>
+            <strong>Defect rate</strong> (% needing rework); <strong>first‑pass yield</strong>.
+          </li>
+          <li><strong>Throughput</strong> (tasks/week/person).</li>
+          <li><strong>Adoption</strong> (weekly active users and tasks/user).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Retrieval/Knowledge</h3>
+        <ul>
+          <li>
+            <strong>Task success rate</strong>: user finds the correct doc/answer with citation
+            within SLA.
+          </li>
+          <li><strong>Time‑to‑answer</strong> (seconds).</li>
+          <li><strong>Escalation rate</strong> to human.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>LP Reporting</h3>
+        <ul>
+          <li>Prep minutes/report; <strong>revision cycles</strong>.</li>
+          <li><strong>Comment accuracy</strong> (PM review pass rate).</li>
+          <li><strong>Deadline hit rate</strong>.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Due Diligence</h3>
+        <ul>
+          <li>Docs triaged/hour; <strong>checklist completeness</strong>.</li>
+          <li><strong>Missed items</strong> found in QC.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Acceptance gates for a quick win</h2>
+    <ul>
+      <li>
+        ≥ <em>X%</em> reduction in <strong>minutes per task</strong> (set after baseline) with 95%
+        confidence (paired t‑test over ≥30 samples).
+      </li>
+      <li>Defect rate not worse than baseline; ideally improved by <em>Y%</em>.</li>
+      <li>Adoption: ≥ <em>N</em> weekly active users in target cohort within 14 days of launch.</li>
+      <li>Compliance: zero permission violations; all AI answers carry citations.</li>
+    </ul>
+
+    <h2>Change Enablement for Non‑Technical Users</h2>
+    <ul>
+      <li>
+        <strong>Role‑based job aids</strong> (one page each) and
+        <strong>six 60‑sec micro‑videos</strong> embedded in Teams.
+      </li>
+      <li>
+        <strong>Office‑hours</strong> (20 minutes weekly) and a
+        <strong>champions network</strong> inside each function.
+      </li>
+      <li>
+        <strong>“Pinned replies” library</strong> so trainers paste the right guidance mid‑meeting.
+      </li>
+    </ul>
+
+    <h2>Architecture stance</h2>
+    <ul>
+      <li>
+        <strong>ChatGPT Enterprise</strong> connectors + Deep Research for knowledge work;
+        <strong>MCP</strong> tools where a system isn’t covered by a connector.
+      </li>
+      <li>
+        No custom vector DB in v1; consider later only for narrow, high‑volume lanes that demand it.
+      </li>
+      <li>Security: SSO/SCIM; permission‑inherit; audit logs; PII handling rules.</li>
+    </ul>
+
+    <h2>What you’ll see from me weekly</h2>
+    <ul>
+      <li>Updated <strong>Opportunity Hopper</strong> with scores and baselines.</li>
+      <li>Pilot scorecards with pre/post numbers and a go/no‑go call.</li>
+      <li>Adoption dashboard for the target cohorts.</li>
+    </ul>
+
+    <footer>
+      David Robertson — Operational AI Audit & Activation • This plan avoids vague promises:
+      baselines first, then numeric gates.
+    </footer>
+  </body>
+</html>
