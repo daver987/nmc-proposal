@@ -19,13 +19,20 @@ const hasMetrics = computed(() =>
         <p class="text-sm text-muted">Proposal for New Mountain Capital</p>
       </div>
       <div class="flex gap-2">
-        <UButton to="/roi" color="primary">ROI Calculator</UButton>
-        <UButton to="/hopper" variant="outline">Opportunity Hopper</UButton>
-        <UButton to="/kpi" variant="ghost">KPI Catalog</UButton>
+        <UButton to="/roi" color="primary" class="transition-transform hover:-translate-y-0.5"
+          >ROI Calculator</UButton
+        >
+        <UButton to="/hopper" variant="outline" class="transition-transform hover:-translate-y-0.5"
+          >Opportunity Hopper</UButton
+        >
+        <UButton to="/kpi" variant="subtle" class="transition-transform hover:-translate-y-0.5"
+          >KPI Catalog</UButton
+        >
       </div>
     </div>
 
     <MetricCards v-if="hasMetrics" />
+    <USeparator />
 
     <UCard>
       <template #header> Objective </template>
@@ -64,6 +71,8 @@ const hasMetrics = computed(() =>
       </UCard>
     </div>
 
+    <USeparator />
+
     <UCard>
       <template #header>Evaluation Method</template>
       <ol class="list-decimal pl-5 space-y-1">
@@ -76,6 +85,8 @@ const hasMetrics = computed(() =>
       </ol>
     </UCard>
 
+    <USeparator />
+
     <UCard>
       <template #header>Candidate Quick Wins (examples)</template>
       <ul class="list-disc pl-5 space-y-1">
@@ -85,6 +96,8 @@ const hasMetrics = computed(() =>
         <li>Contract review aide (clause extraction & variance highlights).</li>
       </ul>
     </UCard>
+
+    <USeparator />
 
     <UCard>
       <template #header>Acceptance Gates (per quick win)</template>

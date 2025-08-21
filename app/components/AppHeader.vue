@@ -5,11 +5,42 @@
         <span class="font-semibold tracking-wide">NMC Proposal</span>
       </div>
       <nav v-if="isUnlocked && !onEnter" class="flex items-center gap-2">
-        <UButton size="sm" variant="subtle" to="/">Overview</UButton>
-        <UButton size="sm" variant="subtle" to="/kpi">KPI Catalog</UButton>
-        <UButton size="sm" variant="subtle" to="/roi">ROI Calculator</UButton>
-        <UButton size="sm" variant="subtle" to="/hopper">Opportunity Hopper</UButton>
-        <UButton size="sm" variant="outline" color="primary" to="/demo">Demo</UButton>
+        <UButton
+          size="sm"
+          variant="subtle"
+          to="/"
+          class="transition-transform hover:-translate-y-0.5"
+          >Overview</UButton
+        >
+        <UButton
+          size="sm"
+          variant="subtle"
+          to="/kpi"
+          class="transition-transform hover:-translate-y-0.5"
+          >KPI Catalog</UButton
+        >
+        <UButton
+          size="sm"
+          variant="subtle"
+          to="/roi"
+          class="transition-transform hover:-translate-y-0.5"
+          >ROI Calculator</UButton
+        >
+        <UButton
+          size="sm"
+          variant="subtle"
+          to="/hopper"
+          class="transition-transform hover:-translate-y-0.5"
+          >Opportunity Hopper</UButton
+        >
+        <UButton
+          size="sm"
+          variant="outline"
+          color="primary"
+          to="/demo"
+          class="transition-transform hover:-translate-y-0.5"
+          >Demo</UButton
+        >
       </nav>
     </div>
   </header>

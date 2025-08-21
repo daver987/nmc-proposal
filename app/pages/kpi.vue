@@ -96,19 +96,19 @@ function printPage() {
     <UCard>
       <template #header>Core Measurement</template>
       <div class="overflow-x-auto">
-        <table class="w-full text-sm">
-          <thead>
+        <table class="w-full text-xs">
+          <thead class="sticky top-0 z-10 bg-default">
             <tr class="border-b">
-              <th class="p-2 text-left">KPI</th>
-              <th class="p-2 text-left">Definition</th>
-              <th class="p-2 text-left">Method</th>
+              <th class="px-2 py-2 text-left uppercase tracking-wide text-toned">KPI</th>
+              <th class="px-2 py-2 text-left uppercase tracking-wide text-toned">Definition</th>
+              <th class="px-2 py-2 text-left uppercase tracking-wide text-toned">Method</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(r, i) in core" :key="i" class="border-b">
-              <td class="p-2">{{ r.kpi }}</td>
-              <td class="p-2">{{ r.definition }}</td>
-              <td class="p-2">{{ r.method }}</td>
+            <tr v-for="(r, i) in core" :key="i" class="border-b odd:bg-muted/40">
+              <td class="px-2 py-2">{{ r.kpi }}</td>
+              <td class="px-2 py-2">{{ r.definition }}</td>
+              <td class="px-2 py-2">{{ r.method }}</td>
             </tr>
           </tbody>
         </table>
@@ -118,21 +118,21 @@ function printPage() {
     <UCard>
       <template #header>Domain‑Specific</template>
       <div class="overflow-x-auto">
-        <table class="w-full text-sm">
-          <thead>
+        <table class="w-full text-xs">
+          <thead class="sticky top-0 z-10 bg-default">
             <tr class="border-b">
-              <th class="p-2 text-left">Area</th>
-              <th class="p-2 text-left">KPI</th>
-              <th class="p-2 text-left">Definition</th>
-              <th class="p-2 text-left">Method</th>
+              <th class="px-2 py-2 text-left uppercase tracking-wide text-toned">Area</th>
+              <th class="px-2 py-2 text-left uppercase tracking-wide text-toned">KPI</th>
+              <th class="px-2 py-2 text-left uppercase tracking-wide text-toned">Definition</th>
+              <th class="px-2 py-2 text-left uppercase tracking-wide text-toned">Method</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(r, i) in domain" :key="i" class="border-b">
-              <td class="p-2">{{ r.area }}</td>
-              <td class="p-2">{{ r.kpi }}</td>
-              <td class="p-2">{{ r.definition }}</td>
-              <td class="p-2">{{ r.method }}</td>
+            <tr v-for="(r, i) in domain" :key="i" class="border-b odd:bg-muted/40">
+              <td class="px-2 py-2">{{ r.area }}</td>
+              <td class="px-2 py-2">{{ r.kpi }}</td>
+              <td class="px-2 py-2">{{ r.definition }}</td>
+              <td class="px-2 py-2">{{ r.method }}</td>
             </tr>
           </tbody>
         </table>
